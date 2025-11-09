@@ -2,8 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const FoodCard = ({ food }) => {
-    console.log(food);
-    const {
+    // console.log(food);
+  const {
+      _id,
       foodName,
       foodImage,
       category,
@@ -50,11 +51,11 @@ const FoodCard = ({ food }) => {
             </div>
           </div>
 
-          <div className="p-4 pt-1 ">
+          <Link to={`/food/foodDetails/${_id}`} className="p-4 pt-1">
             <button className="w-full py-2 my-outline-btn border-[#012444] text-[#fd7d07] font-semibold rounded hover:bg-[#012444] hover:text-white">
               View Food Details
             </button>
-          </div>
+          </Link>
         </div>
       </div>
     );

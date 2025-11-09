@@ -16,7 +16,7 @@ const FeatureFoods = () => {
         })
     }, [])
 
-    console.log(featureFoods);
+    // console.log(featureFoods);
     
     
     return (

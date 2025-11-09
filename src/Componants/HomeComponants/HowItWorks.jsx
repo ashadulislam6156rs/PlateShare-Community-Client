@@ -10,7 +10,7 @@ const HowItWorks = () => {
         <h1 className="text-3xl font-bold text-[#fd7d07] text-center">
           How it works
         </h1>
-        <div className="w-1/2 mx-auto">
+        <div className="md:w-1/2 w-full mx-auto">
           <p className="text-center py-2 pt-3 text-base text-gray-500">
             Share your extra meals, let those in need find them, and collect or
             deliver food easily. Simple steps, big impact!

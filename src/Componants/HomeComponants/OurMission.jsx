@@ -10,7 +10,7 @@ const OurMission = () => {
         <h1 className="text-3xl font-bold text-[#fd7d07] text-center">
           Our Mission
         </h1>
-        <div className="w-1/2 mx-auto">
+        <div className="md:w-1/2 w-full mx-auto">
           <p className="text-center py-2 pt-3 text-base text-gray-500">
             Every plate shared brings hope. Join our community to reduce food
             waste and help those in need.
