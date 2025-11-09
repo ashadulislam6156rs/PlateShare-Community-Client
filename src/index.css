@@ -17,6 +17,10 @@
     @apply bg-[#fd7d07] text-[#fff8ec]
 }
 
+#userNavbar li a.active{
+    @apply bg-[#fd7d07] text-[#fff8ec]
+}
+
 
 
 /* nav-bg 012444, nav-text fff8ec logo-hand-color fd7d07 */

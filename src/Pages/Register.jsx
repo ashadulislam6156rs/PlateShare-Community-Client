@@ -1,94 +1,129 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
 import Container from "../Componants/Container/Container";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-
+import Swal from "sweetalert2";
+import { useLocation } from "react-router";
 
 const Register = () => {
-  const { createUser, logInGoogle, updateUserInfo, setUser } = useContext(AuthContext);
+  const { createUser, logInGoogle, updateUserInfo, setUser } =
+    useContext(AuthContext);
   const [showEye, setShowEye] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const hendleCreateUser = (e) => {
+    
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const photoURL = e.target.photoURL.value;
     const password = e.target.password.value;
 
-    const hasUppercase = /[A-Z]/.test(password); 
+    const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
     const hasValidLength = password.length >= 6;
 
     if (!hasUppercase) {
-      alert("Please Enter At Least One Uppercase!");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please Enter At Least One Uppercase!",
+      });
       return;
     }
     if (!hasLowercase) {
-       alert("Please Enter At Least One Lowercase!");
-       return;
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please Enter At Least One Lowercase!",
+      });
+      return;
     }
     if (!hasValidLength) {
-      alert("Please Enter Minimum 6 Length Password!");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please Enter Minimum 6 Length Password!",
+      });
       return;
     }
 
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
 
-      createUser(email, password)
-        .then((result) => {
-          
-          const user = result.user;
-          console.log(user);
+        // ! Update User
+        const userUpdateInfo = {
+          displayName: name,
+          photoURL: photoURL,
+        };
 
-          // ! Update User
-          const userUpdateInfo = {
-            displayName: name,
-            photoURL: photoURL,
-          };
+        updateUserInfo(userUpdateInfo)
+          .then(() => {
+            setUser({ ...user, userUpdateInfo });
+          })
+          .catch((err) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `${err.message}`,
+            });
+          });
 
-          updateUserInfo(userUpdateInfo)
-            .then(() => {
-              setUser({ ...user, userUpdateInfo });
-            })
-            .catch((err) => console.log(err.message));
-          
-          // ! create user into database
+        // ! create user into database
 
-          // const userData = {
-          //   name: user.displayName,
-          //   email: user.email,
-          //   photoURL: user.photoURL,
-          // };
+        // const userData = {
+        //   name: user.displayName,
+        //   email: user.email,
+        //   photoURL: user.photoURL,
+        // };
 
-          // fetch("http://localhost:3000/users", {
-          //   method: "post",
-          //   headers: {
-          //     "content-type": "application/json"
-          //   },
-          //   body: JSON.stringify(userData)
-          // })
-          //   .then(res => res.json())
-          //   .then((result) => {
-          //     console.log(result);
-              
-             
-          //   })
-          //   .catch((err) => console.log(err.message));
-          
-        })
-      .catch((err) => console.log(err.message));
-  
-  }
-  
-   const handleGoogleLogIn = () => {
-     logInGoogle()
-       .then((result) => {
-         const user = result.user;
-         // ! create user into database
-         console.log(user);
-         
+        // fetch("http://localhost:3000/users", {
+        //   method: "post",
+        //   headers: {
+        //     "content-type": "application/json"
+        //   },
+        //   body: JSON.stringify(userData)
+        // })
+        //   .then(res => res.json())
+        //   .then((result) => {
+        //     console.log(result);
+
+        //   })
+        //   .catch((err) => {
+        // });
+
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title:
+            "Congratulations! Your account has been successfully registered.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        navigate(location?.state || "/");
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${err.message}`,
+        });
+      });
+  };
+
+  const handleGoogleLogIn = () => {
+    logInGoogle()
+      .then((result) => {
+        const user = result.user;
+        // ! create user into database
+        console.log(user);
 
         //  const userData = {
         //    name: user.displayName,
@@ -109,13 +144,29 @@ const Register = () => {
         //    })
         //    .catch((err) => console.log(err.message));
 
-       })
-       .catch((err) => console.log(err.message));
-   };
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Congratulations! Your account has been successfully LogIn.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
+         navigate(location?.state || "/");
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${err.message}`,
+        });
+      });
+  };
 
   return (
-    <Container className={`flex justify-center items-center py-15 px-3 md:px-5`}>
+    <Container
+      className={`flex justify-center items-center py-15 px-3 md:px-5`}
+    >
       <form
         onSubmit={hendleCreateUser}
         className="shadow-lg bg-base-200 rounded-box w-full md:w-3/6 lg:w-2/4 border p-7 border-[#012444]"

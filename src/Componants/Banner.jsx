@@ -1,6 +1,7 @@
 import React from 'react';
 import bannerImg  from "../assets/banner.png"
 import Container from './Container/Container';
+import { Link } from 'react-router';
 
 const Banner = () => {
     return (
@@ -25,9 +26,12 @@ const Banner = () => {
               </h3>
 
               <div className="flex items-center justify-center">
-                <button className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07]">
+                <Link
+                  to={"/availableFoods"}
+                  className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07]"
+                >
                   View All Foods
-                </button>
+                </Link>
               </div>
             </div>
           </div>

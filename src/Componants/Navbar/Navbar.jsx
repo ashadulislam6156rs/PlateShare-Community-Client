@@ -1,13 +1,21 @@
-import React, { useState } from "react";
-import { FaBars, FaGithub, FaXmark } from "react-icons/fa6";
+import React, { useContext, useState } from "react";
+import { FaBars, FaXmark } from "react-icons/fa6";
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/PlateShare_logo.png";
 import { HiOutlineHome } from "react-icons/hi";
 import Container from "../Container/Container";
 import { TbBowlSpoon } from "react-icons/tb";
+import { AuthContext } from "../../AuthContext/AuthContext";
+import UserDeshboard from "./UserDeshboard";
 
 const Navbar = () => {
+  
   const [barToggol, setBarToggol] = useState(true);
+  const {user} = useContext(AuthContext)
+console.log(user);
+
+  
+
   return (
     <Container className="px-3">
       <div className="flex justify-between items-center py-2">
@@ -40,7 +48,7 @@ const Navbar = () => {
           {/* Small device menu list*/}
           <ul
             id="mobileDeviceActive"
-            className={`bg-[#00000020] z-10 p-3 rounded-md shadow-lg absolute transition-all duration-300 ease-in-out -left-64 top-18 lg:hidden ${
+            className={`bg-[#00000020] z-100 p-3 rounded-md shadow-lg absolute transition-all duration-300 ease-in-out -left-64 top-18 lg:hidden ${
               barToggol ? "" : "left-1 block"
             }`}
           >
@@ -61,15 +69,7 @@ const Navbar = () => {
                 <TbBowlSpoon className="text-base" /> Available Foods
               </NavLink>
             </li>
-            {/* <li className="mb-2 shadow-md cursor-pointer">
-              <NavLink
-                to={"/installation"}
-                className="flex gap-2 items-center w-52 bg-slate-100 hover:bg-teal-600 font-semibold hover:text-white px-2 p-1 text-teal-600 rounded"
-              >
-                <GrInstallOption />
-                Installation
-              </NavLink>
-            </li> */}
+            
           </ul>
           <NavLink to={"/"} className="">
             <img className="md:w-30 w-25" src={logo} alt="" />
@@ -99,25 +99,22 @@ const Navbar = () => {
                 <span className="-ml-1 text-sm">Available Foods</span>
               </NavLink>
             </li>
-            {/* <li>
-              <NavLink
-                to={"/installation"}
-                className={"text-base px-1 rounded-b-none"}
-              >
-                <GrInstallOption />
-                <span className="-ml-1 text-sm">Installation</span>
-              </NavLink>
-            </li> */}
+          
           </ul>
         </div>
         {/* navbar buttons */}
         <div className="navbar-end space-x-2">
-          <Link
-            to={"/login"}
-            className="transition-colors ease-in-out duration-700 cursor-pointer text-sm md:text-base font-semibold rounded-lg  px-3 py-1 md:px-4 md:py-1 border-2 text-[#fff8ec] hover:bg-[#fff8ec] hover:text-[#012444] bg-[#012444] border-[#fff8ec]"
-          >
-            LogIn
-          </Link>
+          {/* User */}
+          {user ? (
+           <UserDeshboard></UserDeshboard>
+          ) : (
+            <Link
+              to={"/login"}
+              className="transition-colors ease-in-out duration-700 cursor-pointer text-sm md:text-base font-semibold rounded-lg  px-3 py-1 md:px-4 md:py-1 border-2 text-[#fff8ec] hover:bg-[#fff8ec] hover:text-[#012444] bg-[#012444] border-[#fff8ec]"
+            >
+              LogIn
+            </Link>
+          )}
         </div>
       </div>
     </Container>

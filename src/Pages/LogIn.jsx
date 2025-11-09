@@ -1,24 +1,50 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../AuthContext/AuthContext";
-import { TbEyeClosed } from "react-icons/tb";
-import { FaRegEye, FaRegEyeSlash, FaRegFaceRollingEyes } from "react-icons/fa6";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import Container from "../Componants/Container/Container";
-import { HiOutlineEye } from "react-icons/hi";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
-    const { logInGoogle } = useContext(AuthContext);
-    const [showEye, setShowEye] = useState(true);
+  const { logInGoogle, userLogInWithPassword } = useContext(AuthContext);
+  const [showEye, setShowEye] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
 
 
-   const handleGoogleLogIn = () => {
-     logInGoogle()
-       .then((result) => {
-         const user = result.user;
-         // ! create user into database
-         console.log(user);
-         
+  const handleUserLogInWithPassword = (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    userLogInWithPassword(email, password)
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Congratulations! Your account has been successfully LogIn.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        navigate(location?.state || "/");
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${err.message}`,
+        });
+      });
+  };
+
+  const handleGoogleLogIn = () => {
+    logInGoogle()
+      .then((result) => {
+        const user = result.user;
+        // ! create user into database
+        console.log(user);
 
         //  const userData = {
         //    name: user.displayName,
@@ -38,14 +64,28 @@ const LogIn = () => {
         //      console.log(result);
         //    })
         //    .catch((err) => console.log(err.message));
-       })
-       .catch((err) => console.log(err.message));
-    };
 
-  
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Congratulations! Your account has been successfully LogIn.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        navigate(location?.state || "/");
+      })
+      .catch((err) => console.log(err.message));
+  };
+
   return (
-    <Container className={`flex justify-center items-center py-15 md:px-0 px-3`}>
-      <form className="shadow-lg bg-base-200 rounded-box w-full md:w-3/6 lg:w-2/6 border p-7 border-[#012444]">
+    <Container
+      className={`flex justify-center items-center py-15 md:px-0 px-3`}
+    >
+      <form
+        onSubmit={handleUserLogInWithPassword}
+        className="shadow-lg bg-base-200 rounded-box w-full md:w-3/6 lg:w-2/6 border p-7 border-[#012444]"
+      >
         <h1 className="text-2xl font-bold text-center py-2">Login</h1>
         <p className="text-sm font-normal text-center pb-4">
           Don't have an account? Please{" "}
@@ -112,7 +152,6 @@ const LogIn = () => {
           </p>
           {/* Google Btn */}
           <Link
-            to={"/"}
             onClick={handleGoogleLogIn}
             className="my-outline-btn p-0.5 hover:text-[#ffffff] hover:bg-black flex justify-center items-center gap-2 md:py-1.5"
           >
