@@ -1,0 +1,261 @@
+[
+  {
+    "foodName": "Homemade Chicken Biryani",
+    "foodImage": "https://i.ibb.co/nqPmKWV0/Homemade-Chicken-Biryani.jpg",
+    "quantity": "Serves 3 people",
+    "category": "Main Course",
+    "description": "Freshly cooked chicken biryani with basmati rice.",
+    "ingredients": ["Chicken", "Rice", "Spices", "Yogurt"],
+    "allergyInfo": ["Dairy"],
+    "vegOrNonVeg": "Non-Veg",
+    "cookedTime": "2025-11-09T13:00",
+    "expireDate": "2025-11-10",
+    "pickupTimeWindow": "3 PM to 7 PM",
+    "pickupLocation": "Uttara Sector 10, Dhaka",
+    "locationType": "Home",
+    "provider": {
+      "name": "Hasan Mahmud",
+      "contact": "017XXXXXXXX",
+      "verified": true
+    },
+    "packagingType": "Eco-friendly box",
+    "tags": ["Spicy", "Basmati"],
+    "status": "Available",
+    "requestCount": 4,
+    "rating": 4.7
+  },
+
+  {
+    "foodName": "Vegetable Khichuri",
+    "foodImage": "https://i.ibb.co/yBV8LTG2/Vegetable-Khichuri.jpg",
+    "quantity": "Serves 2 people",
+    "category": "Main Course",
+    "description": "Light and healthy vegetable khichuri perfect for dinner.",
+    "ingredients": ["Rice", "Lentils", "Vegetables"],
+    "allergyInfo": [],
+    "vegOrNonVeg": "Veg",
+    "cookedTime": "2025-11-09T11:30",
+    "expireDate": "2025-11-09",
+    "pickupTimeWindow": "1 PM to 6 PM",
+    "pickupLocation": "Mirpur 6, Dhaka",
+    "locationType": "Home",
+    "provider": {
+      "name": "Rita Akter",
+      "contact": "018XXXXXXXX",
+      "verified": false
+    },
+    "packagingType": "Regular box",
+    "tags": ["Healthy"],
+    "status": "Available",
+    "requestCount": 2,
+    "rating": 4.3
+  },
+
+  {
+    "foodName": "Beef Tehari",
+    "foodImage": "https://i.ibb.co/9HNKM2sV/Beef-Tehari.jpg",
+    "quantity": "Serves 4 people",
+    "category": "Main Course",
+    "description": "Authentic Dhaka-style beef tehari with aromatic spices.",
+    "ingredients": ["Beef", "Rice", "Spices"],
+    "allergyInfo": [],
+    "vegOrNonVeg": "Non-Veg",
+    "cookedTime": "2025-11-09T14:00",
+    "expireDate": "2025-11-10",
+    "pickupTimeWindow": "4 PM to 8 PM",
+    "pickupLocation": "Banani Block B, Dhaka",
+    "locationType": "Restaurant",
+    "provider": {
+      "name": "Tasty Bites",
+      "contact": "019XXXXXXXX",
+      "verified": true
+    },
+    "packagingType": "Eco-friendly box",
+    "tags": ["Spicy", "Premium"],
+    "status": "Available",
+    "requestCount": 7,
+    "rating": 4.9
+  },
+
+  {
+    "foodName": "Chocolate Brownies",
+    "foodImage": "https://i.ibb.co/xNm3TDw/Chocolate-Brownies.jpg",
+    "quantity": "6 pieces",
+    "category": "Dessert",
+    "description": "Soft and fudgy homemade chocolate brownies.",
+    "ingredients": ["Chocolate", "Flour", "Egg", "Butter"],
+    "allergyInfo": ["Egg", "Dairy", "Gluten"],
+    "vegOrNonVeg": "Veg",
+    "cookedTime": "2025-11-09T10:00",
+    "expireDate": "2025-11-11",
+    "pickupTimeWindow": "12 PM to 8 PM",
+    "pickupLocation": "Dhanmondi 32, Dhaka",
+    "locationType": "Home",
+    "provider": {
+      "name": "Shorna",
+      "contact": "017XXXXXXXX",
+      "verified": true
+    },
+    "packagingType": "Paper box",
+    "tags": ["Sweet", "Kids friendly"],
+    "status": "Available",
+    "requestCount": 3,
+    "rating": 4.8
+  },
+
+  {
+    "foodName": "Grilled Chicken Salad",
+    "foodImage": "https://i.ibb.co/vCcC35Ff/Grilled-Chicken-Salad.jpg",
+    "quantity": "Serves 1 person",
+    "category": "Healthy",
+    "description": "Low-calorie grilled chicken salad with fresh veggies.",
+    "ingredients": ["Chicken", "Lettuce", "Olive oil"],
+    "allergyInfo": [],
+    "vegOrNonVeg": "Non-Veg",
+    "cookedTime": "2025-11-09T13:30",
+    "expireDate": "2025-11-09",
+    "pickupTimeWindow": "2 PM to 5 PM",
+    "pickupLocation": "Gulshan 1, Dhaka",
+    "locationType": "Home",
+    "provider": {
+      "name": "Imran",
+      "contact": "016XXXXXXXX",
+      "verified": false
+    },
+    "packagingType": "Eco-friendly box",
+    "tags": ["Healthy", "Low calorie"],
+    "status": "Available",
+    "requestCount": 1,
+    "rating": 4.1
+  },
+
+  {
+    "foodName": "Homemade Roti & Mixed Vegetable",
+    "foodImage": "https://i.ibb.co/148DtLs/Homemade-Roti-Mixed-Vegetable.jpg",
+    "quantity": "Serves 2 people",
+    "category": "Main Course",
+    "description": "Soft rotis with fresh mixed vegetable curry.",
+    "ingredients": ["Wheat", "Vegetables"],
+    "allergyInfo": ["Gluten"],
+    "vegOrNonVeg": "Veg",
+    "cookedTime": "2025-11-09T09:00",
+    "expireDate": "2025-11-09",
+    "pickupTimeWindow": "10 AM to 4 PM",
+    "pickupLocation": "Mohakhali DOHS, Dhaka",
+    "locationType": "Home",
+    "provider": {
+      "name": "Farzana",
+      "contact": "015XXXXXXXX",
+      "verified": true
+    },
+    "packagingType": "Regular box",
+    "tags": ["Healthy", "Light meal"],
+    "status": "Picked Up",
+    "requestCount": 5,
+    "rating": 4.6
+  },
+
+  {
+    "foodName": "Pasta Alfredo",
+    "foodImage": "https://i.ibb.co/8DP44Zb7/Pasta-Alfredo.jpg",
+    "quantity": "Serves 2 people",
+    "category": "Continental",
+    "description": "Creamy Alfredo pasta topped with grilled chicken.",
+    "ingredients": ["Pasta", "Cream", "Chicken"],
+    "allergyInfo": ["Dairy", "Gluten"],
+    "vegOrNonVeg": "Non-Veg",
+    "cookedTime": "2025-11-09T15:00",
+    "expireDate": "2025-11-10",
+    "pickupTimeWindow": "5 PM to 9 PM",
+    "pickupLocation": "Bashundhara R/A, Dhaka",
+    "locationType": "Restaurant",
+    "provider": {
+      "name": "Italiano Kitchen",
+      "contact": "013XXXXXXXX",
+      "verified": true
+    },
+    "packagingType": "Paper box",
+    "tags": ["Creamy", "Continental"],
+    "status": "Available",
+    "requestCount": 6,
+    "rating": 4.8
+  },
+
+  {
+    "foodName": "Mango Lassi",
+    "foodImage": "https://i.ibb.co/XkCMRpVv/Mango-Lassi.jpg",
+    "quantity": "500 ml",
+    "category": "Drink",
+    "description": "Refreshing homemade mango lassi.",
+    "ingredients": ["Mango", "Yogurt", "Milk"],
+    "allergyInfo": ["Dairy"],
+    "vegOrNonVeg": "Veg",
+    "cookedTime": "2025-11-09T12:00",
+    "expireDate": "2025-11-09",
+    "pickupTimeWindow": "1 PM to 5 PM",
+    "pickupLocation": "Rampura, Dhaka",
+    "locationType": "Home",
+    "provider": {
+      "name": "Lamia",
+      "contact": "019XXXXXXXX",
+      "verified": false
+    },
+    "packagingType": "Plastic bottle",
+    "tags": ["Cold", "Sweet"],
+    "status": "Available",
+    "requestCount": 3,
+    "rating": 4.4
+  },
+
+  {
+    "foodName": "Fried Rice & Chili Chicken",
+    "foodImage": "https://i.ibb.co/zW8WRCjX/Fried-Rice-Chili-Chicken.jpg",
+    "quantity": "Serves 3 people",
+    "category": "Asian",
+    "description": "Chinese-style fried rice served with spicy chili chicken.",
+    "ingredients": ["Rice", "Chicken", "Sauce"],
+    "allergyInfo": ["Soy"],
+    "vegOrNonVeg": "Non-Veg",
+    "cookedTime": "2025-11-09T14:20",
+    "expireDate": "2025-11-10",
+    "pickupTimeWindow": "3 PM to 8 PM",
+    "pickupLocation": "Khilkhet, Dhaka",
+    "locationType": "Home",
+    "provider": {
+      "name": "Tanvir",
+      "contact": "017XXXXXXXX",
+      "verified": true
+    },
+    "packagingType": "Eco-friendly box",
+    "tags": ["Spicy", "Asian"],
+    "status": "Available",
+    "requestCount": 5,
+    "rating": 4.7
+  },
+
+  {
+    "foodName": "Cupcakes Assortment",
+    "foodImage": "https://i.ibb.co/9H5dDg3m/Cupcakes-Assortment.jpg",
+    "quantity": "8 pieces",
+    "category": "Dessert",
+    "description": "Colorful cupcakes in chocolate, vanilla, and strawberry flavors.",
+    "ingredients": ["Flour", "Egg", "Butter", "Sugar"],
+    "allergyInfo": ["Egg", "Dairy", "Gluten"],
+    "vegOrNonVeg": "Veg",
+    "cookedTime": "2025-11-09T09:30",
+    "expireDate": "2025-11-11",
+    "pickupTimeWindow": "10 AM to 6 PM",
+    "pickupLocation": "Shantinagar, Dhaka",
+    "locationType": "Home",
+    "provider": {
+      "name": "Maliha",
+      "contact": "018XXXXXXXX",
+      "verified": true
+    },
+    "packagingType": "Paper box",
+    "tags": ["Sweet", "Colorful"],
+    "status": "Available",
+    "requestCount": 4,
+    "rating": 4.9
+  }
+]

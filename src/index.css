@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+.my-outline-btn{
+    @apply transition-colors ease-in-out duration-700 cursor-pointer text-sm md:text-base font-semibold rounded-lg  px-3 py-1 md:px-5 md:py-2 border-2
+}
+.my-btn{
+    @apply transition-colors ease-in-out duration-700 cursor-pointer text-sm md:text-base font-semibold rounded-lg  px-3 py-1 md:px-5 md:py-2
+}
+/* bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07] */
+
+#navLinkForLarge li a.active{
+@apply text-[#fd7d07]
+}
+#mobileDeviceActive li a.active{
+    @apply bg-[#fd7d07] text-[#fff8ec]
+}
+
+p{
+    @apply text-sm text-gray-900 font-normal
+}
+
+/* nav-bg 012444, nav-text fff8ec logo-hand-color fd7d07 */
