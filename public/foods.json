@@ -16,6 +16,7 @@
     "provider": {
       "name": "Hasan Mahmud",
       "contact": "017XXXXXXXX",
+      "provider_image": "https://i.ibb.co/p6GWMsBV/Hasan-Mahmud.jpg",
       "verified": true
     },
     "packagingType": "Eco-friendly box",
@@ -42,6 +43,7 @@
     "provider": {
       "name": "Rita Akter",
       "contact": "018XXXXXXXX",
+      "provider_image": "https://i.ibb.co/bgXvN4G3/Rita-Akter.jpg",
       "verified": false
     },
     "packagingType": "Regular box",
@@ -68,6 +70,7 @@
     "provider": {
       "name": "Tasty Bites",
       "contact": "019XXXXXXXX",
+      "provider_image": "https://i.ibb.co/tMdxKX6w/Tasty-Bites.jpg",
       "verified": true
     },
     "packagingType": "Eco-friendly box",
@@ -94,6 +97,7 @@
     "provider": {
       "name": "Shorna",
       "contact": "017XXXXXXXX",
+      "provider_image": "https://i.ibb.co/4nH5s8nf/shorna.jpg",
       "verified": true
     },
     "packagingType": "Paper box",
@@ -120,6 +124,7 @@
     "provider": {
       "name": "Imran",
       "contact": "016XXXXXXXX",
+      "provider_image": "https://i.ibb.co/0p4wNyGK/Imran.jpg",
       "verified": false
     },
     "packagingType": "Eco-friendly box",
@@ -146,6 +151,7 @@
     "provider": {
       "name": "Farzana",
       "contact": "015XXXXXXXX",
+      "provider_image": "https://i.ibb.co/hxWKZFJS/farzana.jpg",
       "verified": true
     },
     "packagingType": "Regular box",
@@ -170,8 +176,9 @@
     "pickupLocation": "Bashundhara R/A, Dhaka",
     "locationType": "Restaurant",
     "provider": {
-      "name": "Italiano Kitchen",
+      "name": "Shakib",
       "contact": "013XXXXXXXX",
+      "provider_image": "https://i.ibb.co/TqFp3Lpz/shakib.jpg",
       "verified": true
     },
     "packagingType": "Paper box",
@@ -198,6 +205,7 @@
     "provider": {
       "name": "Lamia",
       "contact": "019XXXXXXXX",
+      "provider_image": "https://i.ibb.co/23C5kLZG/lamia.jpg",
       "verified": false
     },
     "packagingType": "Plastic bottle",
@@ -224,6 +232,7 @@
     "provider": {
       "name": "Tanvir",
       "contact": "017XXXXXXXX",
+      "provider_image": "https://i.ibb.co/N6GTzwZp/tanvir.jpg",
       "verified": true
     },
     "packagingType": "Eco-friendly box",
@@ -250,6 +259,7 @@
     "provider": {
       "name": "Maliha",
       "contact": "018XXXXXXXX",
+      "provider_image": "https://i.ibb.co/rDVk2NV/maliha.jpg",
       "verified": true
     },
     "packagingType": "Paper box",

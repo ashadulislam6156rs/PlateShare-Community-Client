@@ -7,20 +7,21 @@ const Banner = () => {
       <>
         <Container>
           <div
-            className="bg-cover h-[280px] md:h-[480px] relative bg-center bg-no-repeat flex items-center justify-center"
+            className="bg-cover h-80 md:h-[480px] relative bg-center bg-no-repeat flex items-center justify-center"
             style={{ backgroundImage: `url(${bannerImg})` }}
           >
-            <div className="h-[280px] md:h-[480px] w-full bg-[#00000070] absolute top-0 left-0 z-10"></div>
+            <div className="h-80 md:h-[480px] w-full bg-[#00000070] absolute top-0 left-0 z-10"></div>
 
             <div className="space-y-5 md:w-2/4 mx-auto px-3 md:px-0 z-50">
               <h1 className="text-3xl font-bold text-[#fd7d07] text-center drop-shadow-[0_2px_4px_rgb(0,0,0,0.6)]">
-                Would you like a Cup of Delicious Coffee?
+                Will you share a fresh meal with someone?
               </h1>
 
-              <h3 className="text-center leading-6 md:w-4/5 mx-auto text-[#f4f4f4eb] drop-shadow-[0_1px_3px_rgb(0,0,0,0.7)]">
-                It's coffee time - Sip & Savor - Relaxation in every sip! Get
-                the nostalgia back!! Your companion of every moment!!! Enjoy the
-                beautiful moments and make them memorable.
+              <h3 className="text-center leading-6 md:w-4/5 mx-auto text-[#ffff] drop-shadow-[0_1px_3px_rgb(0,0,0,0.9)]">
+                Sharing an extra meal can brighten someone’s difficult day. A
+                simple plate offers comfort, reduces waste, and spreads
+                kindness. Donate what you can and help create meaningful change
+                through small, caring actions.
               </h3>
 
               <div className="flex items-center justify-center">
