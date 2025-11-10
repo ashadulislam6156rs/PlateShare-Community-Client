@@ -1,35 +1,73 @@
-import React from 'react';
+import React, { useContext, useRef } from 'react';
 import Container from './Container/Container';
 import { useLoaderData } from 'react-router';
-import { FaCheckDouble } from 'react-icons/fa6';
 import { FaCheckCircle } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
+import { AuthContext } from '../AuthContext/AuthContext';
 
 const FoodDetails = () => {
-    const food = useLoaderData();
-console.log(food);
+  const food = useLoaderData();
+  const modalRef = useRef();
+  const {user} = useContext(AuthContext)
+// console.log(food);
 
 
   const {
+    _id,
     foodName,
     foodImage,
-    category,
     status,
     quantity,
     pickupLocation,
     expireDate,
     pickupTimeWindow,
     description,
-    ingredients,
-    allergyInfo,
-    vegOrNonVeg,
     cookedTime,
     packagingType,
-    tags,
     provider,
     requestCount,
     rating
-    } = food || {};
+  } = food || {};
+  
+
+  const handleFoodRequestModal = () => {
+    modalRef.current.showModal();
+  }
+
+  const handleFoodRequestSubmit = (e) => {
+    e.preventDefault();
+    const userLocation = e.target.userLocation.value;
+    const userMessage = e.target.userMessage.value;
+    const userNumber = e.target.userNumber.value;
+
+    console.log(userLocation, userMessage, userNumber);
+    const newFoodRequest = {
+      foodId: _id,
+      userName: user?.displyName,
+      userEmail: user?.email,
+      userNumber,
+      userPhotoURL: user?.photoURL,
+      userLocation,
+      userMessage,
+      status: "Pendind",
+    };
+
+     fetch("http://localhost:3000/foodRequest", {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+       },
+       body: JSON.stringify(newFoodRequest),
+     })
+       .then(() => {
+         alert("Your Request save success.");
+       })
+      .catch((err) => console.log(err.message));
+    
+    // after submit close modal
+    modalRef.current.close();
+    
+  }
     
 
     return (
@@ -53,12 +91,6 @@ console.log(food);
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6 text-sm text-gray-600">
                   <p>
-                    <span className="font-semibold text-gray-700">
-                      Category:
-                    </span>{" "}
-                    {category}
-                  </p>
-                  <p>
                     <span className="font-semibold text-gray-700">Status:</span>{" "}
                     {status}
                   </p>
@@ -68,17 +100,12 @@ console.log(food);
                     </span>{" "}
                     {quantity}
                   </p>
-                  <p>
-                    <span className="font-semibold text-gray-700">
-                      Veg/Non-Veg:
-                    </span>{" "}
-                    {vegOrNonVeg}
-                  </p>
+
                   <p>
                     <span className="font-semibold text-gray-700">
                       Cooked Time:
                     </span>{" "}
-                    {new Date(cookedTime).toLocaleString()}
+                    {cookedTime}
                   </p>
                   <p>
                     <span className="font-semibold text-gray-700">
@@ -116,26 +143,7 @@ console.log(food);
                   </p>
                 </div>
 
-                <div className="mb-4">
-                  <h3 className="font-semibold mb-1 text-gray-800">
-                    Ingredients:
-                  </h3>
-                  <p className="text-gray-600">{ingredients.join(", ")}</p>
-                </div>
-
-                <div className="mb-4">
-                  <h3 className="font-semibold mb-1 text-gray-800">
-                    Allergy Info:
-                  </h3>
-                  <p className="text-gray-600">
-                    {allergyInfo.length ? allergyInfo.join(", ") : "None"}
-                  </p>
-                </div>
-
-                <div className="mb-4">
-                  <h3 className="font-semibold mb-1 text-gray-800">Tags:</h3>
-                  <p className="text-gray-600">{tags.join(", ")}</p>
-                </div>
+                <div className="mb-4"></div>
 
                 <div className="mb-6 border-t pt-4 border-[#fd7e075d]">
                   <h3 className="font-semibold mb-2 text-[#fd7d07] text-xl">
@@ -151,9 +159,7 @@ console.log(food);
                       <p className="font-medium text-gray-700">
                         {provider.name}
                       </p>
-                      <p className="text-sm text-gray-600">
-                        {provider.contact}
-                      </p>
+                      <p className="text-sm text-gray-600">{provider.email}</p>
                       <p className="text-sm text-gray-500">
                         Verified:{" "}
                         {provider.verified ? (
@@ -175,6 +181,7 @@ console.log(food);
 
               <div className="card-actions mt-4">
                 <button
+                  onClick={handleFoodRequestModal}
                   className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07] w-full"
                   aria-label={`Request ${foodName}`}
                 >
@@ -183,6 +190,78 @@ console.log(food);
               </div>
             </div>
           </div>
+         
+         
+         
+         
+         
+         
+          {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+          <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
+            <div className="modal-box">
+              <div className="modal-action -mt-2">
+                <form method="dialog">
+                  {/* if there is a button in form, it will close the modal */}
+                  <button className="btn btn-error btn-outline btn-md">
+                    Close
+                  </button>
+                </form>
+              </div>
+              <h3 className="md:text-4xl text-2xl text-[#fd7d07] font-semibold pb-3 text-center">
+                Food Request
+              </h3>
+              <div>
+                <form onSubmit={handleFoodRequestSubmit}>
+                  <fieldset className="fieldset w-full">
+                    <legend className="fieldset-legend">
+                      Location
+                      <span className=" text-red-400">*</span>
+                    </legend>
+                    <input
+                      type="text"
+                      className="input w-full focus:outline-0 border-teal-500"
+                      name="userLocation"
+                      placeholder="e.g. Rampura, Dhaka"
+                      required
+                    />
+                  </fieldset>
+                  <fieldset className="fieldset w-full">
+                    <legend className="fieldset-legend">
+                      Why Need Food ?<span className="text-red-400">*</span>
+                    </legend>
+                    <textarea
+                      placeholder="UserMessage"
+                      required
+                      name="userMessage"
+                      className="textarea textarea-success w-full focus:outline-0 resize-none"
+                    ></textarea>
+                  </fieldset>
+                  <fieldset className="fieldset w-full">
+                    <legend className="fieldset-legend">
+                      Contact No:
+                      <span className=" text-red-400">*</span>
+                    </legend>
+                    <input
+                      type="text"
+                      className="input w-full focus:outline-0 border-teal-500"
+                      name="userNumber"
+                      placeholder="e.g. 01xxxxxxxxx"
+                      required
+                    />
+                  </fieldset>
+                  <div className="flex justify-center items-center mt-3">
+                    <button
+                      type="submit"
+                      className="bg-linear-to-r cursor-pointer w-full rounded-lg text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07] py-1.5 md:py-2 font-semibold"
+                    >
+                      Submit Request
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </dialog>
         </Container>
       </div>
     );

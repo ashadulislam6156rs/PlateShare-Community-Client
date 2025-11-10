@@ -4,34 +4,33 @@ import { Link } from 'react-router';
 const FoodCard = ({ food }) => {
     // console.log(food);
   const {
-      _id,
-      foodName,
-      foodImage,
-      category,
-      status,
-      quantity,
-      pickupLocation,
-      expireDate,
-      pickupTimeWindow,
-    } = food || {};
+    _id,
+    foodName,
+    foodImage,
+    status,
+    quantity,
+    pickupLocation,
+    expireDate,
+    pickupTimeWindow,
+    provider,
+  } = food || {};
     
     return (
       <div>
-        <div className="card w-full bg-base-200 shadow-lg h-[550px] flex flex-col justify-between rounded-lg overflow-hidden">
+        <div className="card w-full bg-base-200 shadow-lg h-[580px] flex flex-col justify-between rounded-lg overflow-hidden">
           <figure className="w-full h-70 overflow-hidden">
             <img className="w-full h-full" src={foodImage} alt={foodName} />
           </figure>
 
           <div className="p-4 space-y-2 flex-1 ">
             <h2 className="text-2xl font-bold text-[#fd7d07]">{foodName}</h2>
-            <p className="text-sm text-gray-500 font-semibold">
-              Category: <span className="font-normal">{category}</span>
-            </p>
+
             <p className="text-sm text-gray-500 font-semibold">
               Quantity: <span className="font-normal">{quantity}</span>
             </p>
             <p className="text-sm text-gray-500 font-semibold">
-              Pickup: <span className="font-normal">{pickupLocation}</span>
+              Pickup Location:{" "}
+              <span className="font-normal">{pickupLocation}</span>
             </p>
             <p className="text-sm text-gray-500 font-semibold">
               Expires on: <span className="font-normal">{expireDate}</span>
@@ -48,6 +47,10 @@ const FoodCard = ({ food }) => {
               >
                 Status: <span className="font-normal">{status}</span>
               </p>
+            </div>
+            <div className='flex gap-3 items-center pt-2'>
+              <img className='w-10 h-10 rounded-full' src={provider?.provider_image} alt="" />
+              <h1>{provider?.name}</h1>
             </div>
           </div>
 
