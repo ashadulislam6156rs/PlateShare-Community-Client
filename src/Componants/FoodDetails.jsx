@@ -1,15 +1,27 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Container from './Container/Container';
 import { useLoaderData } from 'react-router';
 import { FaCheckCircle } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
 import { AuthContext } from '../AuthContext/AuthContext';
+import FoodRequestCards from './FoodRequestCards';
 
 const FoodDetails = () => {
   const food = useLoaderData();
   const modalRef = useRef();
-  const {user} = useContext(AuthContext)
-// console.log(food);
+  const { user } = useContext(AuthContext);
+
+   const [requestFoods, setRequestFoods] = useState([]);
+  
+    useEffect(() => {
+      fetch(`http://localhost:3000/myfoodRequest?email=${user?.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setRequestFoods(data)
+        });
+    }, [user?.email]);
+  
+    console.log(requestFoods);
 
 
   const {
@@ -43,13 +55,13 @@ const FoodDetails = () => {
     console.log(userLocation, userMessage, userNumber);
     const newFoodRequest = {
       foodId: _id,
-      userName: user?.displyName,
+      userName: user?.displayName,
       userEmail: user?.email,
       userNumber,
       userPhotoURL: user?.photoURL,
       userLocation,
       userMessage,
-      status: "Pendind",
+      status: "Pending",
     };
 
      fetch("http://localhost:3000/foodRequest", {
@@ -190,12 +202,12 @@ const FoodDetails = () => {
               </div>
             </div>
           </div>
-         
-         
-         
-         
-         
-         
+
+          {/*My Reguest Food Show */}
+          <div className='mt-3'>
+            {<FoodRequestCards requestFoods={requestFoods}></FoodRequestCards>}
+          </div>
+
           {/* Open the modal using document.getElementById('ID').showModal() method */}
 
           <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
