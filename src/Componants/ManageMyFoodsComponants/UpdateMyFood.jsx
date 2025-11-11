@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from '../Container/Container';
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
 
 const UpdateMyFood = () => {
 
@@ -24,7 +25,6 @@ const UpdateMyFood = () => {
     const handleUpdateFoodDetails = (e) => {
         e.preventDefault();
         const target = e.target;
-
         const updateFoodData = {
           foodName: target.foodName.value,
           foodImage: target.foodImage.value,
@@ -39,16 +39,31 @@ const UpdateMyFood = () => {
           status: target.foodStatus.value,
         };
 
-        fetch(`http://localhost:3000/update-food/${_id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updateFoodData),
-        }).then(() => {
-            alert("Your Data Update Success.")
-        }).catch(err => console.log(err)
-        )
+        Swal.fire({
+          title: "Do you want to save the changes?",
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: "Save",
+          denyButtonText: `Don't save`,
+        }).then((result) => {
+          
+          if (result.isConfirmed) {
+              Swal.fire("Saved!", "", "success");
+
+               fetch(`http://localhost:3000/update-food/${_id}`, {
+                 method: "PATCH",
+                 headers: {
+                   "Content-Type": "application/json",
+                 },
+                 body: JSON.stringify(updateFoodData),
+               })
+                 .then(() => {})
+                  .catch((err) => console.log(err));
+              
+          } else if (result.isDenied) {
+            Swal.fire("Changes are not saved", "", "info");
+          }
+        });
 
     }
     

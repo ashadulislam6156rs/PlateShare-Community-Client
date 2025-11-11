@@ -10,11 +10,14 @@ import AddFood from "../Pages/AddFood";
 import ManageMyFoods from "../Pages/ManageMyFoods";
 import MyFoodRequests from "../Pages/MyFoodRequests";
 import UpdateMyFood from "../Componants/ManageMyFoodsComponants/UpdateMyFood";
+import ViewAllFoods from "../Pages/ViewAllFoods";
+import Loading from "../Loading/Loading";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    hydrateFallbackElement: <Loading></Loading>,
     children: [
       {
         index: true,
@@ -22,12 +25,18 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/viewAllFoods",
+        element: <ViewAllFoods></ViewAllFoods>,
+      },
+      {
         path: "/availableFoods",
+        hydrateFallbackElement: <Loading></Loading>,
         loader: () => fetch("http://localhost:3000/available-foods"),
         element: <AvailableFoods />,
       },
       {
         path: "/food/foodDetails/:id",
+        hydrateFallbackElement: <Loading></Loading>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/food/foodDetails/${params.id}`),
         element: (
@@ -62,7 +71,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/updateMyFood/:id",
-        loader: ({params}) => fetch(`http://localhost:3000/update-food/${params.id}`),
+        hydrateFallbackElement: <Loading></Loading>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/update-food/${params.id}`),
         element: (
           <PrivateRoutes>
             <UpdateMyFood></UpdateMyFood>

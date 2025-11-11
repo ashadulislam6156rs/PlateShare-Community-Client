@@ -1,20 +1,87 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const FoodRequestCards = ({ requestFoods }) => {
+  // console.log(requestFoods);
+  
+  const [foods, setFoods] = useState([]);
+
+  useEffect(() => {
+    setFoods(requestFoods);
+  }, [requestFoods]);
+
+
+  const handleAcceptedFood = (foodId, _id) => {
+
+    fetch(`http://localhost:3000/foods/statusUpdate/${foodId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: "Donated" }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+      })
+      .catch((err) => console.log(err.message));
+    
+    
+    fetch(`http://localhost:3000/foodRequest/statusUpdate/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: "Accepted" }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setFoods((prev) =>
+          prev.map((item) =>
+            item._id === _id ? { ...item, status: "Accepted" } : item
+          )
+        );
+      })
+      .catch((err) => console.log(err.message));
+
+   
+  };
+
+
+  const handleRejectedFood = (_id) => {
+
+    fetch(`http://localhost:3000/foodRequest/statusUpdate/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: "Rejected" }),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setFoods((prev) =>
+          prev.map((item) =>
+            item._id === _id ? { ...item, status: "Rejected" } : item
+          )
+        );
+      })
+      .catch((err) => console.log(err.message));
+    
+  }
+
+
   return (
     <div>
       <h1 className="text-3xl font-bold text-[#fd7d07] py-10 text-center">
         {" "}
         My Request Foods:{" "}
         <span className="from-[#632EE3] to-[#9F62F2] bg-linear-to-r text-transparent bg-clip-text">
-          {requestFoods.length}
+          {foods.length}
         </span>
       </h1>
 
       {/* table */}
 
       <div className="space-y-4 pb-20">
-        {requestFoods.map((req) => (
+        {foods.map((req) => (
           <div
             key={req._id}
             className="bg-white rounded-2xl shadow-md border border-gray-200 p-4 space-y-3"
@@ -44,17 +111,23 @@ const FoodRequestCards = ({ requestFoods }) => {
 
               <div className="col-span-1">
                 {req.status == "Pending" || req.status == "Rejected" ? (
-                  <div className="badge badge-warning">Pending</div>
+                  <div className="badge badge-warning">{req.status}</div>
                 ) : (
                   <div className="badge badge-success">Accepted</div>
                 )}
               </div>
 
               <div className="col-span-1 flex gap-2">
-                <button className="btn-success text-success hover:text-white px-4 btn btn-outline btn-ghost btn-xs">
+                <button
+                  onClick={() => handleAcceptedFood(req.foodId, req._id)}
+                  className="btn-success text-success hover:text-white px-4 btn btn-outline btn-ghost btn-xs"
+                >
                   Accepted
                 </button>
-                <button className="btn btn-outline px-4 text-error hover:text-white btn-error btn-ghost btn-xs">
+                <button
+                  onClick={() => handleRejectedFood(req._id)}
+                  className="btn btn-outline px-4 text-error hover:text-white btn-error btn-ghost btn-xs"
+                >
                   Rejected
                 </button>
               </div>

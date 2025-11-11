@@ -45,7 +45,6 @@ const AddFood = () => {
       rating: 0.0,
     };
 
-    // console.log(newFood);
     
     fetch("http://localhost:3000/foods", {
       method: "POST",

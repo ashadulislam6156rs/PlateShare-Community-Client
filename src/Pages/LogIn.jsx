@@ -41,29 +41,8 @@ const LogIn = () => {
 
   const handleGoogleLogIn = () => {
     logInGoogle()
-      .then((result) => {
-        const user = result.user;
+      .then(() => {
         // ! create user into database
-        console.log(user);
-
-        //  const userData = {
-        //    name: user.displayName,
-        //    email: user.email,
-        //    photoURL: user.photoURL,
-        //  };
-
-        //  fetch("http://localhost:3000/users", {
-        //    method: "post",
-        //    headers: {
-        //      "content-type": "application/json",
-        //    },
-        //    body: JSON.stringify(userData),
-        //  })
-        //    .then((res) => res.json())
-        //    .then((result) => {
-        //      console.log(result);
-        //    })
-        //    .catch((err) => console.log(err.message));
 
         Swal.fire({
           position: "top-end",

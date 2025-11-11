@@ -72,7 +72,7 @@ const UserDeshboard = () => {
             className="flex gap-2 items-center bg-slate-100 hover:bg-[#fd7d07] font-semibold hover:text-[#fff8ec] px-2 p-1 text-teal-600 rounded"
           >
             {/* <HiOutlineHome className="text-base" /> */}
-            My Food Reguests
+            My Food Requests
           </NavLink>
         </li>
         <li>
