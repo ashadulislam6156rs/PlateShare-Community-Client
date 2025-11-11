@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from "../Container/Container";
 import { FaSmile } from "react-icons/fa";
 import { FaUsers, FaUtensils } from "react-icons/fa6";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const OurMission = () => {
+
+ useEffect(() => {
+    Aos.init({
+      duration: 900,
+      once: false,
+      easing: "ease-in-out",
+    });
+  }, []);
+
   return (
     <div className="py-10">
       <Container className={`px-3`}>
@@ -16,9 +27,15 @@ const OurMission = () => {
             waste and help those in need.
           </p>
         </div>
-        {/*  Cards */}
-        <div className="mt-7 grid md:grid-cols-2 gap-7 lg:grid-cols-3">
-          {/* card-1 */}
+      
+        <div
+          className="mt-7 grid md:grid-cols-2 gap-7 lg:grid-cols-3"
+          data-aos="fade-up"
+          data-aos-offset="120"
+          data-aos-delay="70"
+          data-aos-duration="900"
+        >
+        
           <div className="bg-white bg-opacity-10 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 transition">
             <div className="mb-4">
               <FaSmile className="text-4xl text-[#fd7d07]" />
@@ -27,7 +44,7 @@ const OurMission = () => {
             <p className="text-gray-700">Meals Shared</p>
           </div>
 
-          {/* card-2 */}
+         
           <div className="bg-white bg-opacity-10 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 transition">
             <div className="mb-4">
               <FaUtensils className="text-4xl text-[#fd7d07]" />
@@ -35,7 +52,7 @@ const OurMission = () => {
             <h3 className="text-2xl font-bold">5,400 kg</h3>
             <p className="text-gray-700">Food Donated</p>
           </div>
-          {/* card-3 */}
+         
           <div className="bg-white bg-opacity-10 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 transition">
             <div className="mb-4">
               <FaUsers className="text-4xl text-[#fd7d07]" />
