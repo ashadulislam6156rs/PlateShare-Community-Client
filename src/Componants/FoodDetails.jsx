@@ -4,23 +4,31 @@ import { useLoaderData, useParams } from 'react-router';
 import { FaCheckCircle } from 'react-icons/fa';
 import { RxCross2 } from 'react-icons/rx';
 import { AuthContext } from '../AuthContext/AuthContext';
-import FoodRequestCards from './FoodRequestCards';
-import Loading from '../Loading/Loading';
 import ErrorFoodNotFound from './ErrorPages/ErrorFoodNotFound';
+import RequestFoods from './RequestFoods';
 
 const FoodDetails = () => {
   const { id } = useParams();
-  console.log(id);
-  
 
   const food = useLoaderData();
   const modalRef = useRef();
   const { user } = useContext(AuthContext);
 
-  const [requestFoods, setRequestFoods] = useState([]);
-  const [loading, setLoading] = useState(true);
-   const [allFoods, setAllFoods] = useState();
+  const [allFoods, setAllFoods] = useState();
+  const [spacificRequestFoods,setSpacificrequestFoods] = useState([])
   
+    useEffect(() => {
+      fetch(`http://localhost:3000/foodRequest/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          // setAllFoods(data);
+          setSpacificrequestFoods(data)
+        });
+    }, [id]);
+
+console.log(spacificRequestFoods);
+
+
     useEffect(() => {
       fetch("http://localhost:3000/foods")
         .then((res) => res.json())
@@ -28,19 +36,8 @@ const FoodDetails = () => {
           setAllFoods(data);
         });
     }, []);
+    
 
-  useEffect(() => {
-    fetch(`http://localhost:3000/myfoodRequest?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setRequestFoods(data);
-        setLoading(false);
-      });
-  }, [user?.email]);
-
-  if (loading) {
-    return <Loading></Loading>;
-  }
 
   const {
     _id,
@@ -96,7 +93,6 @@ const FoodDetails = () => {
     // after submit close modal
     modalRef.current.close();
   };
-console.log(allFoods);
 
   const foodFound = allFoods?.find((item) => item._id === id);
   if (!foodFound) {
@@ -219,7 +215,9 @@ console.log(allFoods);
         {/*My Reguest Food Show */}
         <div className="mt-3">
           {user?.email == provider.email ? (
-            <FoodRequestCards requestFoods={requestFoods}></FoodRequestCards>
+            <RequestFoods
+              spacificRequestFoods={spacificRequestFoods}
+            ></RequestFoods>
           ) : (
             ""
           )}
