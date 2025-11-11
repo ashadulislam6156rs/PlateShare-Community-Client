@@ -79,65 +79,76 @@ const FoodRequestCards = ({ requestFoods }) => {
       </h1>
 
       {/* table */}
-
-      <div className="space-y-4 pb-20">
-        {foods.map((req) => (
-          <div
-            key={req._id}
-            className="bg-white rounded-2xl shadow-md border border-gray-200 p-4 space-y-3"
-          >
-            <div className="w-full grid grid-cols-1 gap-4 md:grid-cols-5 md:gap-6 lg:gap-1 lg:grid-cols-6">
-              <div className="flex items-center gap-3 md:col-span-2">
-                <img
-                  src={req.userPhotoURL}
-                  alt="user"
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <h2 className="text-sm font-semibold">{req.userName}</h2>
-                  <p className="text-xs text-gray-500">{req.userEmail}</p>
-                </div>
-              </div>
-
-              <div className="md:col-span-1">
-                <p className="text-xs text-gray-500 font-medium">Location</p>
-                <p className="text-sm">{req.userLocation}</p>
-              </div>
-
-              <div className="md:col-span-1">
-                <p className="text-xs text-gray-500 font-medium">Contact</p>
-                <p className="text-sm">{req.userNumber}</p>
-              </div>
-
-              <div className="col-span-1">
-                {req.status == "Pending" || req.status == "Rejected" ? (
-                  <div className="badge badge-warning">{req.status}</div>
-                ) : (
-                  <div className="badge badge-success">Accepted</div>
-                )}
-              </div>
-
-              <div className="col-span-1 flex gap-2">
-                <button
-                  onClick={() => handleAcceptedFood(req.foodId, req._id)}
-                  className="btn-success text-success hover:text-white px-4 btn btn-outline btn-ghost btn-xs"
-                >
-                  Accepted
-                </button>
-                <button
-                  onClick={() => handleRejectedFood(req._id)}
-                  className="btn btn-outline px-4 text-error hover:text-white btn-error btn-ghost btn-xs"
-                >
-                  Rejected
-                </button>
-              </div>
-            </div>
-            <div className="border-t border-gray-200 pt-2">
-              <p className="text-xs text-gray-500 font-medium">Why Need Food</p>
-              <p className="text-sm  lg:max-w-[340px]">{req.userMessage}</p>
-            </div>
-          </div>
-        ))}
+      <div className="overflow-x-auto w-full">
+        <table className="table w-full">
+          {/* head */}
+          <thead>
+            <tr>
+              <th>SL. NO.</th>
+              <th>Requester</th>
+              <th>Food ID</th>
+              <th>Location</th>
+              <th>Why Need Food </th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* rows */}
+            {foods.map((food, index) => (
+              <tr>
+                <th>{index + 1}</th>
+                <td>
+                  <div className="flex items-center gap-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle h-12 w-12">
+                        <img src={food.userPhotoURL} alt={food.userName} />
+                      </div>
+                    </div>
+                    <div>
+                      <div className="font-bold">{food.userName}</div>
+                      <div className="text-sm opacity-50">
+                        {food.userNumber}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <p>{food.foodId}</p>
+                </td>
+                <td>{food.userLocation}</td>
+                <td className="w-70">{food.userMessage}</td>
+                <th>
+                  <div className="col-span-1">
+                    {food.status == "Pending" ? (
+                      <div className="badge badge-warning">Pending</div>
+                    ) : food.status == "Rejected" ? (
+                      <div className="badge badge-error">Rejected</div>
+                    ) : (
+                      <div className="badge badge-success">Accepted</div>
+                    )}
+                  </div>
+                </th>
+                <th>
+                  <div className="col-span-1 flex gap-2">
+                    <button
+                      onClick={() => handleAcceptedFood(food.foodId, food._id)}
+                      className="btn-success text-success hover:text-white px-4 btn btn-outline btn-ghost btn-xs"
+                    >
+                      Accepted
+                    </button>
+                    <button
+                      onClick={() => handleRejectedFood(food._id)}
+                      className="btn btn-outline px-4 text-error hover:text-white btn-error btn-ghost btn-xs"
+                    >
+                      Rejected
+                    </button>
+                  </div>
+                </th>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

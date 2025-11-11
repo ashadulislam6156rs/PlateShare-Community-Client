@@ -12,12 +12,14 @@ import MyFoodRequests from "../Pages/MyFoodRequests";
 import UpdateMyFood from "../Componants/ManageMyFoodsComponants/UpdateMyFood";
 import ViewAllFoods from "../Pages/ViewAllFoods";
 import Loading from "../Loading/Loading";
+import Error_404 from "../Componants/ErrorPages/Error_404";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
     hydrateFallbackElement: <Loading></Loading>,
+    errorElement:<Error_404/>,
     children: [
       {
         index: true,

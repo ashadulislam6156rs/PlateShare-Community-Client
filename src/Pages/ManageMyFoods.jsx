@@ -82,7 +82,7 @@ const ManageMyFoods = () => {
                 {/* head */}
                 <thead>
                   <tr>
-                    <th className="hidden md:block">SL No.</th>
+                    <th>SL. No.</th>
                     <th>My Foods</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -92,22 +92,22 @@ const ManageMyFoods = () => {
                   {/* row 1 */}
                   {myFoods?.map((food, index) => (
                     <tr>
-                      <th className="hidden md:block">{index + 1}</th>
+                      <th>{index + 1}</th>
                       <td>
                         <div className="flex items-center gap-3">
                           <div className="avatar">
                             <div className="mask rounded-lg h-12 w-20">
                               <img
                                 src={food.foodImage}
-                                alt="Avatar Tailwind CSS Component"
+                                alt="Avatar"
                               />
                             </div>
                           </div>
                           <div>
-                            <div className="font-bold hidden md:block">
+                            <div>
                               {food.foodName}
                             </div>
-                            <div className="text-sm opacity-50 hidden md:block">
+                            <div className="text-sm opacity-50">
                               {food.quantity}
                             </div>
                           </div>
@@ -118,7 +118,7 @@ const ManageMyFoods = () => {
                           {food.status}
                         </div>
                       </td>
-                      <th className="flex md:flex-row flex-col gap-2 items-center md:mt-4">
+                      <th className="flex gap-2 items-center md:mt-4">
                         <Link
                           to={`/updateMyFood/${food._id}`}
                           className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs"
