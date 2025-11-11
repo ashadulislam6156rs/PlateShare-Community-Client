@@ -26,7 +26,23 @@ const FoodDetails = () => {
         });
     }, [id]);
 
-console.log(spacificRequestFoods);
+  // console.log(spacificRequestFoods);
+  
+
+  const handleFoodStauschange = (foodId) => {
+   fetch(`http://localhost:3000/foods/statusUpdate/${foodId}`, {
+     method: "PATCH",
+     headers: {
+       "Content-Type": "application/json",
+     },
+     body: JSON.stringify({ status: "Donated" }),
+   })
+     .then((res) => res.json())
+     .then(() => {})
+     .catch((err) => console.log(err.message));
+    
+    
+  }
 
 
     useEffect(() => {
@@ -216,6 +232,7 @@ console.log(spacificRequestFoods);
         <div className="mt-3">
           {user?.email == provider.email ? (
             <RequestFoods
+              handleFoodStauschange={handleFoodStauschange}
               spacificRequestFoods={spacificRequestFoods}
             ></RequestFoods>
           ) : (

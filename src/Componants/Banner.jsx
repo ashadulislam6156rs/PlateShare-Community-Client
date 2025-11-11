@@ -2,6 +2,7 @@ import React from 'react';
 import bannerImg  from "../assets/banner.png"
 import Container from './Container/Container';
 import { Link } from 'react-router';
+import { Typewriter } from 'react-simple-typewriter';
 
 const Banner = () => {
     return (
@@ -15,7 +16,15 @@ const Banner = () => {
 
             <div className="space-y-5 md:w-2/4 mx-auto px-3 md:px-0 z-50">
               <h1 className="text-3xl font-bold text-[#fd7d07] text-center drop-shadow-[0_2px_4px_rgb(0,0,0,0.6)]">
-                Will you share a fresh meal with someone?
+                <Typewriter
+                  words={["Will you share a fresh meal with someone?"]}
+                  loop={false}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={80}
+                  deleteSpeed={40}
+                  delaySpeed={2000}
+                />
               </h1>
 
               <h3 className="text-center leading-6 md:w-4/5 mx-auto text-[#ffff] drop-shadow-[0_1px_3px_rgb(0,0,0,0.9)]">

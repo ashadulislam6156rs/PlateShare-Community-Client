@@ -1,30 +1,16 @@
 import React, { useEffect, useState } from 'react';
 
-const RequestFoods = ({ spacificRequestFoods }) => {
-
-
- const [foods, setFoods] = useState([]);
+const RequestFoods = ({ spacificRequestFoods, handleFoodStauschange }) => {
+  const [foods, setFoods] = useState([]);
 
   useEffect(() => {
     setFoods(spacificRequestFoods);
   }, [spacificRequestFoods]);
 
+    const handleAcceptedFood = (foodId, _id) => {
+        
+      handleFoodStauschange(foodId)
 
-  const handleAcceptedFood = (foodId, _id) => {
-
-    fetch(`http://localhost:3000/foods/statusUpdate/${foodId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ status: "Donated" }),
-    })
-      .then((res) => res.json())
-      .then(() => {
-      })
-      .catch((err) => console.log(err.message));
-    
-    
     fetch(`http://localhost:3000/foodRequest/statusUpdate/${_id}`, {
       method: "PATCH",
       headers: {
@@ -41,13 +27,9 @@ const RequestFoods = ({ spacificRequestFoods }) => {
         );
       })
       .catch((err) => console.log(err.message));
-
-   
   };
 
-
   const handleRejectedFood = (_id) => {
-
     fetch(`http://localhost:3000/foodRequest/statusUpdate/${_id}`, {
       method: "PATCH",
       headers: {
@@ -64,9 +46,7 @@ const RequestFoods = ({ spacificRequestFoods }) => {
         );
       })
       .catch((err) => console.log(err.message));
-    
-  }
-
+  };
 
   return (
     <div>
