@@ -17,9 +17,9 @@ import Error_404 from "../Componants/ErrorPages/Error_404";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
     hydrateFallbackElement: <Loading></Loading>,
-    errorElement:<Error_404/>,
+    element: <MainLayout />,
+    errorElement: <Error_404 />,
     children: [
       {
         index: true,
@@ -37,8 +37,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/food/foodDetails/:id",
-        loader: ({ params }) =>
-          fetch(`http://localhost:3000/food/foodDetails/${params.id}`),
         element: (
           <PrivateRoutes>
             <FoodDetails />

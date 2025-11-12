@@ -12,9 +12,6 @@ const Navbar = () => {
   
   const [barToggol, setBarToggol] = useState(true);
   const {user} = useContext(AuthContext)
-console.log(user);
-
-  
 
   return (
     <Container className="px-3">

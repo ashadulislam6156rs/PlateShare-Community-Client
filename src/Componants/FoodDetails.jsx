@@ -1,67 +1,89 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import Container from './Container/Container';
-import { useLoaderData, useParams } from 'react-router';
-import { FaCheckCircle } from 'react-icons/fa';
-import { RxCross2 } from 'react-icons/rx';
-import { AuthContext } from '../AuthContext/AuthContext';
-import ErrorFoodNotFound from './ErrorPages/ErrorFoodNotFound';
-import RequestFoods from './RequestFoods';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import Container from "./Container/Container";
+import { useLoaderData, useParams } from "react-router";
+import { FaCheckCircle } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
+import { AuthContext } from "../AuthContext/AuthContext";
+import ErrorFoodNotFound from "./ErrorPages/ErrorFoodNotFound";
+import RequestFoods from "./RequestFoods";
+import { Bounce, toast } from "react-toastify";
+import Loading from "../Loading/Loading";
 
 const FoodDetails = () => {
   const { id } = useParams();
-
-  const food = useLoaderData();
   const modalRef = useRef();
   const { user } = useContext(AuthContext);
 
   const [allFoods, setAllFoods] = useState();
-  const [spacificRequestFoods,setSpacificrequestFoods] = useState([])
+  const [spacificRequestFoods, setSpacificrequestFoods] = useState([]);
+  const [loading,setLoading] = useState(true)
+  const [error, setError] = useState(false)
+   const [singleFood, setSingleFood] = useState(null);
   
-    useEffect(() => {
-      fetch(`http://localhost:3000/foodRequest/${id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setSpacificrequestFoods(data)
-        });
-    }, [id]);
+  useEffect(() => {
+    fetch(`http://localhost:3000/food/foodDetails/${id}`)
+      .then((res) => res.json())
+      .then(data => {
+      setSingleFood(data);
+      setLoading(false);
+      })
+      .catch(err => {
+      console.log(err);
+      setError(true)
+    })
+    
+  }, [id]);
 
-  
+  useEffect(() => {
+    fetch(`http://localhost:3000/foodRequest/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setSpacificrequestFoods(data);
+      });
+  }, [id]);
 
   const handleFoodStauschange = (foodId) => {
-   fetch(`http://localhost:3000/foods/statusUpdate/${foodId}`, {
-     method: "PATCH",
-     headers: {
-       "Content-Type": "application/json",
-     },
-     body: JSON.stringify({ status: "Donated" }),
-   })
-     .then((res) => res.json())
-     .then(() => {
+    fetch(`http://localhost:3000/foods/statusUpdate/${foodId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ status: "Donated" }),
+    })
+      .then((res) => res.json())
+      .then(() => {
         setAllFoods((prevFoods) =>
           prevFoods.map((item) =>
             item._id === foodId ? { ...item, status: "Donated" } : item
           )
-       );
-       
-        if (food._id === foodId) {
-          food.status = "Donated";
+        );
+
+        if (singleFood._id === foodId) {
+          singleFood.status = "Donated";
         }
-     })
-     .catch((err) => console.log(err.message));
-    
-    
-  }
+      })
+      .catch((err) =>
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        })
+      );
+  };
 
-
-    useEffect(() => {
-      fetch("http://localhost:3000/foods")
-        .then((res) => res.json())
-        .then((data) => {
-          setAllFoods(data);
-        });
-    }, []);
-    
-
+  useEffect(() => {
+    fetch("http://localhost:3000/foods")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllFoods(data);
+      });
+  }, []);
 
   const {
     _id,
@@ -78,7 +100,7 @@ const FoodDetails = () => {
     provider,
     requestCount,
     rating,
-  } = food || {};
+  } = singleFood || {};
 
   const handleFoodRequestModal = () => {
     modalRef.current.showModal();
@@ -90,7 +112,6 @@ const FoodDetails = () => {
     const userMessage = e.target.userMessage.value;
     const userNumber = e.target.userNumber.value;
 
-    // console.log(userLocation, userMessage, userNumber);
     const newFoodRequest = {
       foodId: _id,
       userName: user?.displayName,
@@ -110,18 +131,59 @@ const FoodDetails = () => {
       body: JSON.stringify(newFoodRequest),
     })
       .then(() => {
-        alert("Your Request save success.");
+        toast.success("Congratulations! Your Food Request Successfully Send.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) =>
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        })
+      );
 
     // after submit close modal
     modalRef.current.close();
   };
 
-  const foodFound = allFoods?.find((item) => item._id === id);
-  if (!foodFound) {
-    return <ErrorFoodNotFound></ErrorFoodNotFound>;
+
+ const cookdate = new Date(cookedTime);
+ const formattedTime = cookdate.toLocaleTimeString("en-US", {
+   hour: "2-digit",
+   minute: "2-digit",
+   hour12: true,
+ });
+
+ const formattedDate = cookdate.toLocaleDateString("en-US", {
+   year: "numeric",
+   month: "numeric",
+   day: "numeric",
+ });
+
+
+  
+  if (loading) {
+    <Loading></Loading>
   }
+
+if (error || !singleFood) {
+  return <ErrorFoodNotFound></ErrorFoodNotFound>;
+}
 
   return (
     <div className="min-h-[calc(100vh-100px)] bg-gray-50 py-8">
@@ -156,7 +218,12 @@ const FoodDetails = () => {
                   <span className="font-semibold text-gray-700">
                     Cooked Time:
                   </span>{" "}
-                  {cookedTime}
+                  {
+                    <>
+                      <span className="mr-1">{formattedDate},</span>
+                      <span>{formattedTime}</span>
+                    </>
+                  }
                 </p>
                 <p>
                   <span className="font-semibold text-gray-700">

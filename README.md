@@ -1,16 +1,49 @@
-# React + Vite
+# 🍽️ PlateShare
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site:** [demo](https://plateshare.web.app)
 
-Currently, two official plugins are available:
+PlateShare is a community-powered food sharing platform that connects generous donors with individuals and families in need. Built with empathy, trust, and accessibility at its core, PlateShare helps reduce food waste while strengthening local bonds.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌟 Key Features
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- 🥗 **Browse Available Meals**  
+  Discover fresh, home-cooked or packaged food donations with detailed descriptions, pickup times, and expiry info.
 
-## Expanding the ESLint configuration
+- 📩 **Request Food with Purpose**  
+  Authenticated users can submit personalized food requests, including location, contact number, and a message explaining their need.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 👤 **Verified Donor Profiles**  
+  Each listing includes donor details with profile image, email, and verification status to ensure transparency and trust.
+
+- 📦 **Clear Packaging & Pickup Info**  
+  Listings include packaging type, cooked time, and pickup time windows to help recipients plan safely and efficiently.
+
+- 🚫 **Robust Error Handling & Protected Routes**  
+  Includes graceful fallback pages like “404 Not Found” and “Food Not Found,” plus secure access for authenticated users only.
+
+---
+
+## 🛠️ Technologies & npm Packages Used
+| Category       | Tools / Libraries          |
+| -------------- | -------------------------- |
+| Frontend       | React, React Router DOM    |
+| Styling        | Tailwind CSS, DaisyUI      |
+| Authentication | Firebase                   |
+| Animations     | React AOS and React Simple typeWriter |
+| Icons          | React Icons                |
+| Notifications  | React Toastify and sweetalert2            |
+| Deployment     |   |
+| Validation     | PropTypes    
+| Data Fetching  | fetch            |
+| Data Handling  | MongoDB Database            |
+
+---
+
+## 📂 Folder Structure (Client Side)
+
+
+---
+
+

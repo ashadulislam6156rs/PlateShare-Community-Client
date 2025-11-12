@@ -215,7 +215,7 @@ const UpdateMyFood = () => {
                     <span className="text-base text-red-400">*</span>
                   </legend>
                   <input
-                    type="text"
+                    type="url"
                     className="input w-full focus:outline-0 border-teal-500"
                     name="foodImage"
                     placeholder="Enter Food Image URL"
@@ -245,7 +245,7 @@ const UpdateMyFood = () => {
                     <span className="text-base text-red-400">*</span>
                   </legend>
                   <input
-                    type="text"
+                    type="url"
                     className="input w-full focus:outline-0 border-teal-500"
                     name="provider_image"
                     placeholder="Enter Your Image URL"

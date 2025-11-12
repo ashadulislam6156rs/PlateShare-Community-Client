@@ -3,6 +3,7 @@ import { Outlet, useNavigation } from "react-router";
 import Navbar from "../Componants/Navbar/Navbar";
 import Footer from "../Componants/Footer/Footer";
 import Loading from "../Loading/Loading";
+import { Bounce, ToastContainer } from "react-toastify";
 
 const MainLayout = () => {
   const navigatation = useNavigation();
@@ -15,11 +16,28 @@ const MainLayout = () => {
         </nav>
       </header>
       <main className="max-w-full mx-auto min-h-[calc(100vh-350.5px)] bg-[#f7f7f7]">
-        {navigatation?.state == "loading" ? <Loading></Loading> : <Outlet></Outlet>}
+        {navigatation?.state == "loading" ? (
+          <Loading></Loading>
+        ) : (
+          <Outlet></Outlet>
+        )}
       </main>
       <footer className="bg-[#012444] max-w-full mx-auto">
         <Footer></Footer>
       </footer>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </div>
   );
 };

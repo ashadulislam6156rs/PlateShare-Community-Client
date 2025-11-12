@@ -4,14 +4,13 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import Container from "../Componants/Container/Container";
-import Swal from "sweetalert2";
+import { Bounce, toast } from "react-toastify";
 
 const LogIn = () => {
   const { logInGoogle, userLogInWithPassword } = useContext(AuthContext);
   const [showEye, setShowEye] = useState(true);
   const location = useLocation();
   const navigate = useNavigate();
-
 
   const handleUserLogInWithPassword = (e) => {
     e.preventDefault();
@@ -20,21 +19,30 @@ const LogIn = () => {
 
     userLogInWithPassword(email, password)
       .then(() => {
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Congratulations! Your account has been successfully LogIn.",
-          showConfirmButton: false,
-          timer: 1500,
+        toast.success("Congratulations! Your account successfully LogIn.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
         });
-
         navigate(location?.state || "/");
       })
       .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${err.message}`,
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
         });
       });
   };
@@ -42,19 +50,32 @@ const LogIn = () => {
   const handleGoogleLogIn = () => {
     logInGoogle()
       .then(() => {
-        // ! create user into database
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Congratulations! Your account has been successfully LogIn.",
-          showConfirmButton: false,
-          timer: 1500,
+        toast.success("Congratulations! Your account successfully LogIn.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
         });
-
         navigate(location?.state || "/");
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) =>
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        })
+      );
   };
 
   return (

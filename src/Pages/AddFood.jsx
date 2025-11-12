@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import Container from "../Componants/Container/Container";
 import { AuthContext } from "../AuthContext/AuthContext";
+import { Bounce, toast } from "react-toastify";
 
 const AddFood = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   const handleAddFood = (e) => {
     e.preventDefault();
@@ -45,7 +45,6 @@ const AddFood = () => {
       rating: 0.0,
     };
 
-    
     fetch("http://localhost:3000/foods", {
       method: "POST",
       headers: {
@@ -54,12 +53,34 @@ const AddFood = () => {
       body: JSON.stringify(newFood),
     })
       .then(() => {
-      alert("data save success.")
+        toast.success(
+          "Congratulations! Your Food has been successfully Added.",
+          {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          }
+        );
       })
-    .catch((err)=>console.log(err.message)
-    )
-
-
+      .catch((err) =>
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        })
+      );
   };
 
   return (
@@ -145,7 +166,7 @@ const AddFood = () => {
                     <span className="text-base text-red-400">*</span>
                   </legend>
                   <input
-                    type="text"
+                    type="url"
                     className="input w-full focus:outline-0 border-teal-500"
                     name="foodImage"
                     placeholder="Enter Food Image URL"

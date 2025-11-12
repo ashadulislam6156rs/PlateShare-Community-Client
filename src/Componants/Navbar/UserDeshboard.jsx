@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthContext";
-import { Link, NavLink } from "react-router";
-import Swal from "sweetalert2";
+import {  NavLink } from "react-router";
+import { Bounce, toast } from "react-toastify";
 
 const UserDeshboard = () => {
   const { user, userSignOut, setUser } = useContext(AuthContext);
@@ -10,19 +10,29 @@ const UserDeshboard = () => {
     userSignOut()
       .then(() => {
         setUser(null);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Your account has been successfully LogOut.",
-          showConfirmButton: false,
-          timer: 1500,
+        toast.success("Your account has been successfully LogOut.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
         });
       })
       .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${err.message}`,
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
         });
       });
   };
@@ -43,8 +53,8 @@ const UserDeshboard = () => {
         </div>
       </div>
       <ul
-              tabIndex="-1"
-              id="userNavbar"
+        tabIndex="-1"
+        id="userNavbar"
         className="menu menu-sm mt-5 dropdown-content bg-base-100 rounded-box z-100 w-52 p-2 shadow-md shadow-[#0124445a]"
       >
         <li className="mb-2 shadow-md cursor-pointer ">

@@ -5,8 +5,8 @@ import { useContext } from "react";
 import { AuthContext } from "../AuthContext/AuthContext";
 import Container from "../Componants/Container/Container";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-import Swal from "sweetalert2";
 import { useLocation } from "react-router";
+import { Bounce, toast } from "react-toastify";
 
 const Register = () => {
   const { createUser, logInGoogle, updateUserInfo, setUser } =
@@ -22,32 +22,66 @@ const Register = () => {
     const email = e.target.email.value;
     const photoURL = e.target.photoURL.value;
     const password = e.target.password.value;
+    const checked = e.target.checked.checked;
 
     const hasUppercase = /[A-Z]/.test(password);
     const hasLowercase = /[a-z]/.test(password);
     const hasValidLength = password.length >= 6;
 
-    if (!hasUppercase) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please Enter At Least One Uppercase!",
-      });
+
+    if (!checked) {
+       toast.error("Please accept our terms & conditions!", {
+         position: "top-right",
+         autoClose: 5000,
+         hideProgressBar: false,
+         closeOnClick: false,
+         pauseOnHover: true,
+         draggable: true,
+         progress: undefined,
+         theme: "light",
+         transition: Bounce,
+       });
       return;
     }
+      if (!hasUppercase) {
+        toast.error("Please Enter At Least One Uppercase!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+        return;
+      }
     if (!hasLowercase) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please Enter At Least One Lowercase!",
+      toast.error("Please Enter At Least One Lowercase!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
       });
       return;
     }
     if (!hasValidLength) {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Please Enter Minimum 6 Length Password!",
+      toast.error("Please Enter Minimum 6 Length Password!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
       });
       return;
     }
@@ -68,98 +102,80 @@ const Register = () => {
             setUser({ ...user, userUpdateInfo });
           })
           .catch((err) => {
-            Swal.fire({
-              icon: "error",
-              title: "Oops...",
-              text: `${err.message}`,
-            });
+             toast.error(`${err.message}`, {
+               position: "top-right",
+               autoClose: 5000,
+               hideProgressBar: false,
+               closeOnClick: false,
+               pauseOnHover: true,
+               draggable: true,
+               progress: undefined,
+               theme: "light",
+               transition: Bounce,
+             });
           });
 
-        // ! create user into database
-
-        // const userData = {
-        //   name: user.displayName,
-        //   email: user.email,
-        //   photoURL: user.photoURL,
-        // };
-
-        // fetch("http://localhost:3000/users", {
-        //   method: "post",
-        //   headers: {
-        //     "content-type": "application/json"
-        //   },
-        //   body: JSON.stringify(userData)
-        // })
-        //   .then(res => res.json())
-        //   .then((result) => {
-        //     console.log(result);
-
-        //   })
-        //   .catch((err) => {
-        // });
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title:
-            "Congratulations! Your account has been successfully registered.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+      toast.success(
+        "Congratulations! Your account has been successfully registered.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        }
+      );
 
         navigate(location?.state || "/");
       })
       .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${err.message}`,
-        });
+        toast.error(`${err.message}`, {
+                 position: "top-right",
+                 autoClose: 5000,
+                 hideProgressBar: false,
+                 closeOnClick: false,
+                 pauseOnHover: true,
+                 draggable: true,
+                 progress: undefined,
+                 theme: "light",
+                 transition: Bounce,
+               });
       });
   };
 
   const handleGoogleLogIn = () => {
     logInGoogle()
-      .then((result) => {
-        const user = result.user;
-        // ! create user into database
-        console.log(user);
-
-        //  const userData = {
-        //    name: user.displayName,
-        //    email: user.email,
-        //    photoURL: user.photoURL,
-        //  };
-
-        //  fetch("http://localhost:3000/users", {
-        //    method: "post",
-        //    headers: {
-        //      "content-type": "application/json",
-        //    },
-        //    body: JSON.stringify(userData),
-        //  })
-        //    .then((res) => res.json())
-        //    .then((result) => {
-        //      console.log(result);
-        //    })
-        //    .catch((err) => console.log(err.message));
-
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Congratulations! Your account has been successfully LogIn.",
-          showConfirmButton: false,
-          timer: 1500,
+      .then(() => {
+        toast.success("Congratulations! Your account successfully LogIn.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
         });
 
          navigate(location?.state || "/");
       })
       .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: `${err.message}`,
-        });
+        toast.error(`${err.message}`, {
+                 position: "top-right",
+                 autoClose: 5000,
+                 hideProgressBar: false,
+                 closeOnClick: false,
+                 pauseOnHover: true,
+                 draggable: true,
+                 progress: undefined,
+                 theme: "light",
+                 transition: Bounce,
+               });
       });
   };
 
@@ -248,12 +264,13 @@ const Register = () => {
                     <FaRegEyeSlash classNameclassName="absolute right-3 top-3 text-base z-50" /> */}
             </label>
           </fieldset>
-          <p>
-            <span className="hover:underline text-[#fd7d07]">
-              <span className="cursor-pointer  font-semibold">
-                Accept Our Terms & Conditions!
-              </span>
-            </span>
+          <p className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              name="checked"
+              className="checkbox checkbox-secondary"
+            />
+            <span className="">Accept Our terms & conditions!</span>
           </p>
 
           <button className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07]">
