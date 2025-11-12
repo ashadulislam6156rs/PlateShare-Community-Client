@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Container from "./Container/Container";
-import { useLoaderData, useParams } from "react-router";
+import {  useParams } from "react-router";
 import { FaCheckCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { AuthContext } from "../AuthContext/AuthContext";
@@ -14,7 +14,6 @@ const FoodDetails = () => {
   const modalRef = useRef();
   const { user } = useContext(AuthContext);
 
-  const [allFoods, setAllFoods] = useState();
   const [spacificRequestFoods, setSpacificrequestFoods] = useState([]);
   const [loading,setLoading] = useState(true)
   const [error, setError] = useState(false)
@@ -52,15 +51,11 @@ const FoodDetails = () => {
     })
       .then((res) => res.json())
       .then(() => {
-        setAllFoods((prevFoods) =>
-          prevFoods.map((item) =>
-            item._id === foodId ? { ...item, status: "Donated" } : item
-          )
-        );
+         setSingleFood({ ...singleFood, status: "Donated" });
 
-        if (singleFood._id === foodId) {
-          singleFood.status = "Donated";
-        }
+        // if (allFoods._id === foodId) {
+        //   allFoods.status = "Donated";
+        // }
       })
       .catch((err) =>
         toast.error(`${err.message}`, {
@@ -77,13 +72,6 @@ const FoodDetails = () => {
       );
   };
 
-  useEffect(() => {
-    fetch("http://localhost:3000/foods")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllFoods(data);
-      });
-  }, []);
 
   const {
     _id,
@@ -178,7 +166,7 @@ const FoodDetails = () => {
 
   
   if (loading) {
-    <Loading></Loading>
+    return <Loading></Loading>;
   }
 
 if (error || !singleFood) {
@@ -265,16 +253,16 @@ if (error || !singleFood) {
                 </h3>
                 <div className="flex items-center space-x-4">
                   <img
-                    src={provider.provider_image}
-                    alt={provider.name}
+                    src={provider?.provider_image}
+                    alt={provider?.name || "Provider"}
                     className="w-16 h-16 rounded-full object-cover border border-gray-300"
                   />
                   <div>
-                    <p className="font-medium text-gray-700">{provider.name}</p>
-                    <p className="text-sm text-gray-600">{provider.email}</p>
+                    <p className="font-medium text-gray-700">{provider?.name}</p>
+                    <p className="text-sm text-gray-600">{provider?.email}</p>
                     <p className="text-sm text-gray-500">
                       Verified:{" "}
-                      {provider.verified ? (
+                      {provider?.verified ? (
                         <>
                           Yes{" "}
                           <FaCheckCircle className="inline-block text-green-500 font-bold" />
