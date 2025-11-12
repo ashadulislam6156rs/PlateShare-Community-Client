@@ -1,58 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import Container from '../Container/Container';
-import FoodCard from './FoodCard';
-import { Link } from 'react-router';
-import Loading from '../../Loading/Loading';
-
+import React, { useEffect, useState } from "react";
+import Container from "../Container/Container";
+import FoodCard from "./FoodCard";
+import { Link } from "react-router";
+import Loading from "../../Loading/Loading";
 
 const FeatureFoods = () => {
-
   const [featureFoods, setFeatureFoods] = useState();
-    const [loading, setLoading] = useState(true);
-    useEffect(() => {
-        fetch("http://localhost:3000/feature-foods")
-            .then((res) => res.json())
-            .then(data => {
-            setFeatureFoods(data)
-            setLoading(false)
-        })
-    }, [])
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch("https://plateshare-community-server.vercel.app/feature-foods")
+      .then((res) => res.json())
+      .then((data) => {
+        setFeatureFoods(data);
+        setLoading(false);
+      });
+  }, []);
 
-  
   if (loading) {
     return <Loading></Loading>;
- }
-    
-    
-    return (
-      <div className="pt-10">
-        <Container className={`px-3`}>
-          <h1 className="text-3xl font-bold text-[#fd7d07] text-center">
-            Feature Foods
-          </h1>
-          <div className="md:w-1/2 mx-auto">
-            <p className="text-center py-2 pt-3 text-base text-gray-500">
-              Discover our featured foods, carefully prepared and fresh, ready
-              to delight your taste buds while reducing food waste daily.
-            </p>
-          </div>
-          {/* Foods Card */}
-          <div className="mt-7 grid md:grid-cols-2 gap-7 lg:grid-cols-3">
-            {featureFoods?.map((food) => (
-              <FoodCard key={food._id} food={food}></FoodCard>
-            ))}
-          </div>
-          <div className="flex items-center justify-center py-10 pb-5">
-            <Link
-              to={"/availableFoods"}
-              className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07]"
-            >
-              View All
-            </Link>
-          </div>
-        </Container>
-      </div>
-    );
+  }
+
+  return (
+    <div className="pt-10">
+      <Container className={`px-3`}>
+        <h1 className="text-3xl font-bold text-[#fd7d07] text-center">
+          Feature Foods
+        </h1>
+        <div className="md:w-1/2 mx-auto">
+          <p className="text-center py-2 pt-3 text-base text-gray-500">
+            Discover our featured foods, carefully prepared and fresh, ready to
+            delight your taste buds while reducing food waste daily.
+          </p>
+        </div>
+        {/* Foods Card */}
+        <div className="mt-7 grid md:grid-cols-2 gap-7 lg:grid-cols-3">
+          {featureFoods?.map((food) => (
+            <FoodCard key={food._id} food={food}></FoodCard>
+          ))}
+        </div>
+        <div className="flex items-center justify-center py-10 pb-5">
+          <Link
+            to={"/availableFoods"}
+            className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07]"
+          >
+            View All
+          </Link>
+        </div>
+      </Container>
+    </div>
+  );
 };
 
 export default FeatureFoods;

@@ -1,77 +1,74 @@
-import React from 'react';
-import Container from '../Container/Container';
-import { useLoaderData } from 'react-router';
-import Swal from 'sweetalert2';
+import React from "react";
+import Container from "../Container/Container";
+import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 
 const UpdateMyFood = () => {
+  const food = useLoaderData();
+  const {
+    _id,
+    foodName,
+    foodImage,
+    quantity,
+    description,
+    cookedTime,
+    expireDate,
+    pickupTimeWindow,
+    pickupLocation,
+    locationType,
+    packagingType,
+    provider,
+    status,
+  } = food || {};
 
-    const food = useLoaderData();
-    const {
-        _id,
-      foodName,
-      foodImage,
-      quantity,
-      description,
-      cookedTime,
-      expireDate,
-      pickupTimeWindow,
-      pickupLocation,
-      locationType,
-      packagingType,
-      provider,
-      status,
-    } = food || {};
-    
+  const handleUpdateFoodDetails = (e) => {
+    e.preventDefault();
+    const target = e.target;
+    const updateFoodData = {
+      foodName: target.foodName.value,
+      foodImage: target.foodImage.value,
+      quantity: target.quantity.value,
+      description: target.description.value,
+      cookedTime: target.cookedTime.value,
+      expireDate: target.expireDate.value,
+      pickupTimeWindow: target.pickupTimeWindow.value,
+      pickupLocation: target.pickupLocation.value,
+      locationType: target.locationType.value,
+      packagingType: target.packagingType.value,
+      status: target.foodStatus.value,
+      provider: {
+        name: target.Provider_name.value,
+        provider_image: target.provider_image.value,
+      },
+    };
 
-    const handleUpdateFoodDetails = (e) => {
-        e.preventDefault();
-        const target = e.target;
-        const updateFoodData = {
-          foodName: target.foodName.value,
-          foodImage: target.foodImage.value,
-          quantity: target.quantity.value,
-          description: target.description.value,
-          cookedTime: target.cookedTime.value,
-          expireDate: target.expireDate.value,
-          pickupTimeWindow: target.pickupTimeWindow.value,
-          pickupLocation: target.pickupLocation.value,
-          locationType: target.locationType.value,
-          packagingType: target.packagingType.value,
-          status: target.foodStatus.value,
-          provider: {
-            name: target.Provider_name.value,
-            provider_image: target.provider_image.value,
-          },
-        };
+    Swal.fire({
+      title: "Do you want to save the changes?",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Save",
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire("Saved!", "", "success");
 
-        Swal.fire({
-          title: "Do you want to save the changes?",
-          showDenyButton: true,
-          showCancelButton: true,
-          confirmButtonText: "Save",
-          denyButtonText: `Don't save`,
-        }).then((result) => {
-          
-          if (result.isConfirmed) {
-              Swal.fire("Saved!", "", "success");
-
-               fetch(`http://localhost:3000/update-food/${_id}`, {
-                 method: "PATCH",
-                 headers: {
-                   "Content-Type": "application/json",
-                 },
-                 body: JSON.stringify(updateFoodData),
-               })
-                 .then(() => {})
-                  .catch((err) => console.log(err));
-              
-          } else if (result.isDenied) {
-            Swal.fire("Changes are not saved", "", "info");
+        fetch(
+          `https://plateshare-community-server.vercel.app/update-food/${_id}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updateFoodData),
           }
-        });
-
-    }
-    
+        )
+          .then(() => {})
+          .catch((err) => console.log(err));
+      } else if (result.isDenied) {
+        Swal.fire("Changes are not saved", "", "info");
+      }
+    });
+  };
 
   return (
     <div className="md:pb-5 md:p-10 bg-[#f7f7f7]">

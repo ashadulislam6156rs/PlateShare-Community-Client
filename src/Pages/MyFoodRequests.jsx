@@ -7,21 +7,22 @@ import Loading from "../Loading/Loading";
 const MyFoodRequests = () => {
   const { user } = useContext(AuthContext);
   const [requestFoods, setRequestFoods] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/myfoodRequest?email=${user?.email}`)
+    fetch(
+      `https://plateshare-community-server.vercel.app/myfoodRequest?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
-        setRequestFoods(data)
-        setLoading(false)
+        setRequestFoods(data);
+        setLoading(false);
       });
   }, [user?.email]);
 
   if (loading) {
     return <Loading></Loading>;
-}
-  
+  }
 
   return (
     <div>

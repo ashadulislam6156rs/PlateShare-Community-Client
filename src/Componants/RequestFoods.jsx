@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 const RequestFoods = ({ spacificRequestFoods, handleFoodStauschange }) => {
   const [foods, setFoods] = useState([]);
@@ -7,17 +7,19 @@ const RequestFoods = ({ spacificRequestFoods, handleFoodStauschange }) => {
     setFoods(spacificRequestFoods);
   }, [spacificRequestFoods]);
 
-    const handleAcceptedFood = (foodId, _id) => {
-        
-      handleFoodStauschange(foodId)
+  const handleAcceptedFood = (foodId, _id) => {
+    handleFoodStauschange(foodId);
 
-    fetch(`http://localhost:3000/foodRequest/statusUpdate/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ status: "Accepted" }),
-    })
+    fetch(
+      `https://plateshare-community-server.vercel.app/foodRequest/statusUpdate/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: "Accepted" }),
+      }
+    )
       .then((res) => res.json())
       .then(() => {
         setFoods((prev) =>
@@ -30,13 +32,16 @@ const RequestFoods = ({ spacificRequestFoods, handleFoodStauschange }) => {
   };
 
   const handleRejectedFood = (_id) => {
-    fetch(`http://localhost:3000/foodRequest/statusUpdate/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ status: "Rejected" }),
-    })
+    fetch(
+      `https://plateshare-community-server.vercel.app/foodRequest/statusUpdate/${_id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: "Rejected" }),
+      }
+    )
       .then((res) => res.json())
       .then(() => {
         setFoods((prev) =>

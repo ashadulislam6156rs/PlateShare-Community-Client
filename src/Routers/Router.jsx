@@ -32,7 +32,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/availableFoods",
-        loader: () => fetch("http://localhost:3000/available-foods"),
+        loader: () =>
+          fetch(
+            "https://plateshare-community-server.vercel.app/available-foods"
+          ),
         element: <AvailableFoods />,
       },
       {
@@ -70,7 +73,9 @@ const router = createBrowserRouter([
       {
         path: "/updateMyFood/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/update-food/${params.id}`),
+          fetch(
+            `https://plateshare-community-server.vercel.app/update-food/${params.id}`
+          ),
         element: (
           <PrivateRoutes>
             <UpdateMyFood></UpdateMyFood>

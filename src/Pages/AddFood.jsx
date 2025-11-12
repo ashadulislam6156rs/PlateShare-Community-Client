@@ -45,7 +45,7 @@ const AddFood = () => {
       rating: 0.0,
     };
 
-    fetch("http://localhost:3000/foods", {
+    fetch("https://plateshare-community-server.vercel.app/foods", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

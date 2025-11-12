@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Container from "./Container/Container";
-import {  useParams } from "react-router";
+import { useParams } from "react-router";
 import { FaCheckCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import { AuthContext } from "../AuthContext/AuthContext";
@@ -15,26 +15,27 @@ const FoodDetails = () => {
   const { user } = useContext(AuthContext);
 
   const [spacificRequestFoods, setSpacificrequestFoods] = useState([]);
-  const [loading,setLoading] = useState(true)
-  const [error, setError] = useState(false)
-   const [singleFood, setSingleFood] = useState(null);
-  
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [singleFood, setSingleFood] = useState(null);
+
   useEffect(() => {
-    fetch(`http://localhost:3000/food/foodDetails/${id}`)
+    fetch(
+      `https://plateshare-community-server.vercel.app/food/foodDetails/${id}`
+    )
       .then((res) => res.json())
-      .then(data => {
-      setSingleFood(data);
-      setLoading(false);
+      .then((data) => {
+        setSingleFood(data);
+        setLoading(false);
       })
-      .catch(err => {
-      console.log(err);
-      setError(true)
-    })
-    
+      .catch((err) => {
+        console.log(err);
+        setError(true);
+      });
   }, [id]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/foodRequest/${id}`)
+    fetch(`https://plateshare-community-server.vercel.app/foodRequest/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setSpacificrequestFoods(data);
@@ -42,16 +43,19 @@ const FoodDetails = () => {
   }, [id]);
 
   const handleFoodStauschange = (foodId) => {
-    fetch(`http://localhost:3000/foods/statusUpdate/${foodId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ status: "Donated" }),
-    })
+    fetch(
+      `https://plateshare-community-server.vercel.app/foods/statusUpdate/${foodId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: "Donated" }),
+      }
+    )
       .then((res) => res.json())
       .then(() => {
-         setSingleFood({ ...singleFood, status: "Donated" });
+        setSingleFood({ ...singleFood, status: "Donated" });
 
         // if (allFoods._id === foodId) {
         //   allFoods.status = "Donated";
@@ -71,7 +75,6 @@ const FoodDetails = () => {
         })
       );
   };
-
 
   const {
     _id,
@@ -111,7 +114,7 @@ const FoodDetails = () => {
       status: "Pending",
     };
 
-    fetch("http://localhost:3000/foodRequest", {
+    fetch("https://plateshare-community-server.vercel.app/foodRequest", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -149,29 +152,26 @@ const FoodDetails = () => {
     modalRef.current.close();
   };
 
+  const cookdate = new Date(cookedTime);
+  const formattedTime = cookdate.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
 
- const cookdate = new Date(cookedTime);
- const formattedTime = cookdate.toLocaleTimeString("en-US", {
-   hour: "2-digit",
-   minute: "2-digit",
-   hour12: true,
- });
+  const formattedDate = cookdate.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
 
- const formattedDate = cookdate.toLocaleDateString("en-US", {
-   year: "numeric",
-   month: "numeric",
-   day: "numeric",
- });
-
-
-  
   if (loading) {
     return <Loading></Loading>;
   }
 
-if (error || !singleFood) {
-  return <ErrorFoodNotFound></ErrorFoodNotFound>;
-}
+  if (error || !singleFood) {
+    return <ErrorFoodNotFound></ErrorFoodNotFound>;
+  }
 
   return (
     <div className="min-h-[calc(100vh-100px)] bg-gray-50 py-8">
@@ -258,7 +258,9 @@ if (error || !singleFood) {
                     className="w-16 h-16 rounded-full object-cover border border-gray-300"
                   />
                   <div>
-                    <p className="font-medium text-gray-700">{provider?.name}</p>
+                    <p className="font-medium text-gray-700">
+                      {provider?.name}
+                    </p>
                     <p className="text-sm text-gray-600">{provider?.email}</p>
                     <p className="text-sm text-gray-500">
                       Verified:{" "}

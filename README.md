@@ -11,9 +11,12 @@ PlateShare is a community-powered food sharing platform that connects generous d
 - 🥗 **Browse Available Meals**  
   Discover fresh, home-cooked or packaged food donations with detailed descriptions, pickup times, and expiry info.
 
+* 📊 **Food Request System:** Donors can accept or reject food requests in real time.
+* 🕒 **Smart Date & Time Formatting:** Cooked/expiry times shown in human-readable form.
+
 - 📩 **Request Food with Purpose**  
   Authenticated users can submit personalized food requests, including location, contact number, and a message explaining their need.
-
+* 🍱 **Add, Edit, and Manage Foods:** Users can easily post or edit donated foods.
 - 👤 **Verified Donor Profiles**  
   Each listing includes donor details with profile image, email, and verification status to ensure transparency and trust.
 
@@ -42,6 +45,76 @@ PlateShare is a community-powered food sharing platform that connects generous d
 ---
 
 ## 📂 Folder Structure (Client Side)
+
+Below is the folder structure for the **client** side of PlateShare:
+
+```
+client/
+├── public/
+│   └── _redirects
+│
+├── src/
+│   ├── assets/                
+│   │
+│   ├── AuthContext/
+│   │   └── AuthContext.jsx     
+│   ├── AuthProvider/
+│   │   └── AuthProvider.jsx    
+│   ├── components/            
+│   │   ├── Container/          
+│   │   ├── ErrorPages/         
+│   │   ├── Footer/             
+│   │   ├── HomeComponants/ 
+|   │   │   ├── FeatureFoods.jsx            
+│   │   |   ├── FoodCard.jsx             
+│   │   |   ├── HowItWorks.jsx            
+│   │   |   └── OurMission.jsx 
+│   │   ├── ManageMyFoodsComponants   
+│   │   |   └── UpdateMyFood.jsx
+│   │   ├── Navbar/            
+│   │   |   ├── Navbar.jsx           
+│   │   |   └── UserDeshboard.jsx 
+│   │   ├── Banner.jsx              
+│   │   ├── FoodDetails.jsx            
+│   │   ├── FoodRequestCards.jsx           
+│   │   └── RequestFoods.jsx          
+│   │
+│   ├── pages/                
+│   │   ├── AddFood.jsx             
+│   │   ├── AvailableFoods.jsx           
+│   │   ├── Home.jsx       
+│   │   ├── LogIn.jsx           
+│   │   ├── ManageMyFoods.jsx        
+│   │   ├── Register.jsx          
+│   │   ├── ViewAllFoods.jsx      
+│   │   └── MyFoodRequests.jsx               
+│   │
+│   ├── Firebase/
+│   │   └── Firebase.init.js    
+│   │
+│   ├── Routes/
+│   │   └── Router.jsx          
+│   │
+│   ├── PrivateRoutes/
+│   │   └── PrivateRoutes.jsx          
+│   ├── Layouts/
+│   │   └── MainLayout.jsx        
+│   ├── Loading/
+│   │   └── Loading.jsx        
+│   │
+│   ├── index.css           
+│   │   └── tailwind.css        
+│   └── main.jsx              
+├── .gitignore                      
+├── package.json                
+├── index.html              
+├── eslint.config.js               
+├── package-lock.json        
+├── vite.config.js             
+└── README.md                  
+```
+
+
 
 
 ---

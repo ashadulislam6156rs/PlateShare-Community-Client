@@ -11,7 +11,9 @@ const ManageMyFoods = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/manageMyFoods?email=${user.email}`)
+    fetch(
+      `https://plateshare-community-server.vercel.app/manageMyFoods?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setMyFoods(data);
@@ -20,10 +22,7 @@ const ManageMyFoods = () => {
       .catch((err) => console.log(err.message));
   }, [user.email]);
 
- 
-
   const handleMyFoodsDelete = (id) => {
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -34,10 +33,12 @@ const ManageMyFoods = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-        fetch(`http://localhost:3000/deleteMyFood/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://plateshare-community-server.vercel.app/deleteMyFood/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount) {
@@ -47,101 +48,90 @@ const ManageMyFoods = () => {
                 icon: "success",
               });
 
-              const remainingFoods = myFoods.filter(food => food._id !== id);
+              const remainingFoods = myFoods.filter((food) => food._id !== id);
               setMyFoods(remainingFoods);
             }
-          
-        }).catch(err => console.log(err.message)
-        )
+          })
+          .catch((err) => console.log(err.message));
       }
     });
-    
-  }
-
+  };
 
   if (loading) {
     return <Loading></Loading>;
   }
 
+  return (
+    <div>
+      <Container className={`px-3`}>
+        <div>
+          <h1 className="text-3xl font-bold text-[#fd7d07] text-center py-5 md:py-10">
+            {" "}
+            Manage My Foods:{" "}
+            <span className="from-[#632EE3] to-[#9F62F2] bg-linear-to-r text-transparent bg-clip-text">
+              {myFoods.length}
+            </span>
+          </h1>
 
-    return (
-      <div>
-        <Container className={`px-3`}>
-          <div>
-            <h1 className="text-3xl font-bold text-[#fd7d07] text-center py-5 md:py-10">
-              {" "}
-              Manage My Foods:{" "}
-              <span className="from-[#632EE3] to-[#9F62F2] bg-linear-to-r text-transparent bg-clip-text">
-                {myFoods.length}
-              </span>
-            </h1>
-
-            {/* table */}
-            <div className="overflow-x-auto pr-5 mb-5">
-              <table className="table table-zebra">
-                {/* head */}
-                <thead>
+          {/* table */}
+          <div className="overflow-x-auto pr-5 mb-5">
+            <table className="table table-zebra">
+              {/* head */}
+              <thead>
+                <tr>
+                  <th>SL. No.</th>
+                  <th>My Foods</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* row 1 */}
+                {myFoods?.map((food, index) => (
                   <tr>
-                    <th>SL. No.</th>
-                    <th>My Foods</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>{index + 1}</th>
+                    <td>
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div className="mask rounded-lg h-12 w-20">
+                            <img src={food.foodImage} alt="Avatar" />
+                          </div>
+                        </div>
+                        <div>
+                          <div>{food.foodName}</div>
+                          <div className="text-sm opacity-50">
+                            {food.quantity}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div className="badge bg-[#00d2908c]">{food.status}</div>
+                    </td>
+                    <th className="flex gap-2 items-center md:mt-4">
+                      <Link
+                        to={`/updateMyFood/${food._id}`}
+                        className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs"
+                      >
+                        Update
+                      </Link>
+                      <button
+                        onClick={() => handleMyFoodsDelete(food._id)}
+                        className="btn btn-outline px-4 text-error hover:text-white btn-error btn-ghost btn-xs"
+                      >
+                        Delete
+                      </button>
+                    </th>
                   </tr>
-                </thead>
-                <tbody>
-                  {/* row 1 */}
-                  {myFoods?.map((food, index) => (
-                    <tr>
-                      <th>{index + 1}</th>
-                      <td>
-                        <div className="flex items-center gap-3">
-                          <div className="avatar">
-                            <div className="mask rounded-lg h-12 w-20">
-                              <img
-                                src={food.foodImage}
-                                alt="Avatar"
-                              />
-                            </div>
-                          </div>
-                          <div>
-                            <div>
-                              {food.foodName}
-                            </div>
-                            <div className="text-sm opacity-50">
-                              {food.quantity}
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <div className="badge bg-[#00d2908c]">
-                          {food.status}
-                        </div>
-                      </td>
-                      <th className="flex gap-2 items-center md:mt-4">
-                        <Link
-                          to={`/updateMyFood/${food._id}`}
-                          className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs"
-                        >
-                          Update
-                        </Link>
-                        <button
-                          onClick={() => handleMyFoodsDelete(food._id)}
-                          className="btn btn-outline px-4 text-error hover:text-white btn-error btn-ghost btn-xs"
-                        >
-                          Delete
-                        </button>
-                      </th>
-                    </tr>
-                  ))}
-                </tbody>
-                {/* foot */}
-              </table>
-            </div>
+                ))}
+              </tbody>
+              {/* foot */}
+            </table>
           </div>
-        </Container>
-      </div>
-    );
+        </div>
+      </Container>
+    </div>
+  );
 };
 
 export default ManageMyFoods;
