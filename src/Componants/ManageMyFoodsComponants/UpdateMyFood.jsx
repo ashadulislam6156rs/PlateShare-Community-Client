@@ -18,6 +18,7 @@ const UpdateMyFood = () => {
       pickupLocation,
       locationType,
       packagingType,
+      provider,
       status,
     } = food || {};
     
@@ -37,6 +38,10 @@ const UpdateMyFood = () => {
           locationType: target.locationType.value,
           packagingType: target.packagingType.value,
           status: target.foodStatus.value,
+          provider: {
+            name: target.Provider_name.value,
+            provider_image: target.provider_image.value,
+          },
         };
 
         Swal.fire({
@@ -230,6 +235,51 @@ const UpdateMyFood = () => {
                     defaultValue={status}
                     required
                     className="input w-full focus:outline-0 border-teal-500"
+                  />
+                </fieldset>
+              </div>
+              <div className="flex gap-5">
+                <fieldset className="fieldset w-full">
+                  <legend className="fieldset-legend">
+                    Provider Image
+                    <span className="text-base text-red-400">*</span>
+                  </legend>
+                  <input
+                    type="text"
+                    className="input w-full focus:outline-0 border-teal-500"
+                    name="provider_image"
+                    placeholder="Enter Your Image URL"
+                    defaultValue={provider?.provider_image}
+                    required
+                  />
+                </fieldset>
+                <fieldset className="fieldset w-full">
+                  <legend className="fieldset-legend">
+                    Provider Name
+                    <span className="text-base text-red-400">*</span>
+                  </legend>
+                  <input
+                    type="text"
+                    name="Provider_name"
+                    placeholder="e.g. Hasan"
+                    defaultValue={provider?.name}
+                    required
+                    className="input w-full focus:outline-0 border-teal-500"
+                  />
+                </fieldset>
+              </div>
+
+              <div className="flex gap-5">
+                <fieldset className="fieldset w-full">
+                  <legend className="fieldset-legend">
+                    Provider Email
+                    <span className="text-base text-red-400">*</span>
+                  </legend>
+                  <input
+                    type="text"
+                    className="input w-full focus:outline-0 border-teal-500"
+                    readOnly
+                    defaultValue={provider?.email}
                   />
                 </fieldset>
               </div>

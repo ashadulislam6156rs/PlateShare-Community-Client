@@ -21,12 +21,10 @@ const FoodDetails = () => {
       fetch(`http://localhost:3000/foodRequest/${id}`)
         .then((res) => res.json())
         .then((data) => {
-          // setAllFoods(data);
           setSpacificrequestFoods(data)
         });
     }, [id]);
 
-  // console.log(spacificRequestFoods);
   
 
   const handleFoodStauschange = (foodId) => {
@@ -38,7 +36,17 @@ const FoodDetails = () => {
      body: JSON.stringify({ status: "Donated" }),
    })
      .then((res) => res.json())
-     .then(() => {})
+     .then(() => {
+        setAllFoods((prevFoods) =>
+          prevFoods.map((item) =>
+            item._id === foodId ? { ...item, status: "Donated" } : item
+          )
+       );
+       
+        if (food._id === foodId) {
+          food.status = "Donated";
+        }
+     })
      .catch((err) => console.log(err.message));
     
     
@@ -82,7 +90,7 @@ const FoodDetails = () => {
     const userMessage = e.target.userMessage.value;
     const userNumber = e.target.userNumber.value;
 
-    console.log(userLocation, userMessage, userNumber);
+    // console.log(userLocation, userMessage, userNumber);
     const newFoodRequest = {
       foodId: _id,
       userName: user?.displayName,
