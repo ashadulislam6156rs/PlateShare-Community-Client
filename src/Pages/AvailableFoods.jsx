@@ -9,6 +9,7 @@ const AvailableFoods = () => {
 
   return (
     <div className="pt-10">
+      <title>Available Foods - PlateShare Community</title>
       <title>Available Foods</title>
       <Container className={`px-3`}>
         <h1 className="text-3xl font-bold text-[#fd7d07] text-center">

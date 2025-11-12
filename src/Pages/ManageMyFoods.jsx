@@ -63,6 +63,7 @@ const ManageMyFoods = () => {
 
   return (
     <div>
+      <title>Manage My Foods - PlateShare Community</title>
       <Container className={`px-3`}>
         <div>
           <h1 className="text-3xl font-bold text-[#fd7d07] text-center py-5 md:py-10">

@@ -30,6 +30,7 @@ const LogIn = () => {
           theme: "light",
           transition: Bounce,
         });
+        e.target.reset();
         navigate(location?.state || "/");
       })
       .catch((err) => {
@@ -82,6 +83,7 @@ const LogIn = () => {
     <Container
       className={`flex justify-center items-center py-15 md:px-0 px-3`}
     >
+      <title>LogIn - PlateShare Community</title>
       <form
         onSubmit={handleUserLogInWithPassword}
         className="shadow-lg bg-base-200 rounded-box w-full md:w-3/6 lg:w-2/6 border p-7 border-[#012444]"

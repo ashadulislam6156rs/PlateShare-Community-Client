@@ -29,7 +29,17 @@ const FoodDetails = () => {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error(`${err.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
         setError(true);
       });
   }, [id]);
@@ -175,6 +185,7 @@ const FoodDetails = () => {
 
   return (
     <div className="min-h-[calc(100vh-100px)] bg-gray-50 py-8">
+      <title>Food Details - PlateShare Community</title>
       <Container className="px-3">
         <div className="card lg:card-side bg-white rounded-0 overflow-hidden md:gap-5 lg:gap-0">
           <figure className="w-full h-80 md:h-[500px] lg:h-full lg:w-[850px] rounded-2xl bg-amber-400">

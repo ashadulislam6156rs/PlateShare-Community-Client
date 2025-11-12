@@ -13,6 +13,9 @@ import UpdateMyFood from "../Componants/ManageMyFoodsComponants/UpdateMyFood";
 import ViewAllFoods from "../Pages/ViewAllFoods";
 import Loading from "../Loading/Loading";
 import Error_404 from "../Componants/ErrorPages/Error_404";
+import TermsAndConditions from "../Pages/TermsAndConditions";
+import PrivacyPolicy from "../Pages/PrivacyPolicy";
+import ContactUs from "../Pages/ContactUs";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +84,18 @@ const router = createBrowserRouter([
             <UpdateMyFood></UpdateMyFood>
           </PrivateRoutes>
         ),
+      },
+      {
+        path: "/termsAndConditions",
+        element: <TermsAndConditions />,
+      },
+      {
+        path: "/privacyPolicy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "/contactUs",
+        element: <ContactUs />,
       },
       {
         path: "/login",

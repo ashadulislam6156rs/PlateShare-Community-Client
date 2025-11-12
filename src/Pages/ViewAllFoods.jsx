@@ -21,6 +21,7 @@ const ViewAllFoods = () => {
   }
   return (
     <div className="py-10">
+      <title>View All Foods - PlateShare Community</title>
       <Container className={`px-3`}>
         <h1 className="text-3xl font-bold text-[#fd7d07] text-center">
           All Foods

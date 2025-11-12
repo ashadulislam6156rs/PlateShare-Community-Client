@@ -62,7 +62,9 @@ const UpdateMyFood = () => {
             body: JSON.stringify(updateFoodData),
           }
         )
-          .then(() => {})
+          .then(() => {
+            e.target.reset();
+          })
           .catch((err) => console.log(err));
       } else if (result.isDenied) {
         Swal.fire("Changes are not saved", "", "info");
@@ -72,6 +74,7 @@ const UpdateMyFood = () => {
 
   return (
     <div className="md:pb-5 md:p-10 bg-[#f7f7f7]">
+      <title>Update My Food - PlateShare Community</title>
       <Container className={``}>
         <div className="md:w-5/6 pb-5 pt-6 md:pt-3  p-3 md:p-5 bg-base-300 rounded-lg mx-auto w-full">
           <div>

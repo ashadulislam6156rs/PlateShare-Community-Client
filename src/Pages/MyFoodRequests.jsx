@@ -28,6 +28,7 @@ const MyFoodRequests = () => {
     <div>
       {" "}
       <Container className={`px-3`}>
+        <title>My Food Request - PlateShare Community</title>
         <FoodRequestCards requestFoods={requestFoods}></FoodRequestCards>
       </Container>
     </div>

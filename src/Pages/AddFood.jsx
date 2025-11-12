@@ -67,6 +67,8 @@ const AddFood = () => {
             transition: Bounce,
           }
         );
+
+        e.target.reset();
       })
       .catch((err) =>
         toast.error(`${err.message}`, {
@@ -85,6 +87,7 @@ const AddFood = () => {
 
   return (
     <div className="pb-5 md:p-10 bg-[#f7f7f7]">
+      <title>Add Food - PlateShare Community</title>
       <Container className={``}>
         <div className="md:w-5/6 p-3 md:p-0 mx-auto w-full">
           <div className="card card-side bg-base-300 mt-4 shadow-md h-full md:p-6 w-full">

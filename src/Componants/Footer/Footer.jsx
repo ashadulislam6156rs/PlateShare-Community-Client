@@ -24,16 +24,45 @@ const Footer = () => {
             </aside>
             <nav className="">
               <h6 className="footer-title">Services</h6>
-              <a className="link link-hover">Branding</a>
-              <a className="link link-hover">Design</a>
-              <a className="link link-hover">Marketing</a>
-              <a className="link link-hover">Advertisement</a>
+              <a
+                href="/addFood"
+                className="link link-hover"
+                title="Post your extra food to help others"
+              >
+                Post Food
+              </a>
+              <a
+                href="/availableFoods"
+                className="link link-hover"
+                title="Browse available foods near you"
+              >
+                Available Foods
+              </a>
+              <a
+                href="/contactUs"
+                className="link link-hover"
+                title="Read safety tips for donating or receiving food"
+              >
+                Contact Us
+              </a>
             </nav>
+
             <nav className="">
               <h6 className="footer-title">Legal</h6>
-              <a className="link link-hover">Terms of use</a>
-              <a className="link link-hover">Privacy policy</a>
-              <a className="link link-hover">Cookie policy</a>
+              <a
+                href="/termsAndConditions"
+                className="link link-hover"
+                title="Read the terms and conditions of using PlateShare"
+              >
+                Terms & Conditions
+              </a>
+              <a
+                href="/privacyPolicy"
+                className="link link-hover"
+                title="Understand how we protect your personal data"
+              >
+                Privacy Policy
+              </a>
             </nav>
           </footer>
         </Container>
@@ -47,19 +76,19 @@ const Footer = () => {
                 </h3>
               </aside>
               <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end text-base">
-                <a href="">
+                <a href="https://x.com/">
                   <RiTwitterXFill />
                 </a>
-                <a href="">
+                <a href="https://www.youtube.com/@codeandspeech">
                   <IoLogoYoutube />
                 </a>
-                <a href="">
+                <a href="https://www.facebook.com/share/1DE3Xd5V4C/">
                   <FaFacebook />
                 </a>
-                <a href="">
+                <a href="https://www.linkedin.com/in/ashadulislam6156rs/">
                   <FaLinkedin />
                 </a>
-                <a href="">
+                <a href="https://github.com/ashadulislam6156rs">
                   <FaGithub />
                 </a>
               </nav>

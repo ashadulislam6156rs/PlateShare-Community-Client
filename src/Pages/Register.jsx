@@ -130,6 +130,7 @@ const Register = () => {
         }
       );
 
+        e.target.reset();
         navigate(location?.state || "/");
       })
       .catch((err) => {
@@ -183,6 +184,7 @@ const Register = () => {
     <Container
       className={`flex justify-center items-center py-15 px-3 md:px-5`}
     >
+      <title>Register - PlateShare Community</title>
       <form
         onSubmit={hendleCreateUser}
         className="shadow-lg bg-base-200 rounded-box w-full md:w-3/6 lg:w-2/4 border p-7 border-[#012444]"

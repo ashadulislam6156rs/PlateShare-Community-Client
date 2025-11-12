@@ -7,6 +7,7 @@ const Error_404 = () => {
   return (
     <div>
       <Container>
+        <title>Error 404 - PlateShare Community</title>
         <div className="flex justify-center items-center min-h-screen bg-linear-to-br from-[#fefefe] to-[#f3f4f6]">
           <div className="flex gap-3 items-center">
             <div>
