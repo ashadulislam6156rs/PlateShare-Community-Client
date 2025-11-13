@@ -28,7 +28,7 @@ const FoodRequestCards = ({ requestFoods }) => {
             <tr>
               <th>SL. NO.</th>
               <th>Requester</th>
-              <th>Food ID</th>
+              <th>View Food Details</th>
               <th>Location</th>
               <th>Why Need Food </th>
               <th>Status</th>

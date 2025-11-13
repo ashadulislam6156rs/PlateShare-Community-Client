@@ -29,20 +29,6 @@ const Register = () => {
     const hasValidLength = password.length >= 6;
 
 
-    if (!checked) {
-       toast.error("Please accept our terms & conditions!", {
-         position: "top-right",
-         autoClose: 5000,
-         hideProgressBar: false,
-         closeOnClick: false,
-         pauseOnHover: true,
-         draggable: true,
-         progress: undefined,
-         theme: "light",
-         transition: Bounce,
-       });
-      return;
-    }
       if (!hasUppercase) {
         toast.error("Please Enter At Least One Uppercase!", {
           position: "top-right",
@@ -85,6 +71,21 @@ const Register = () => {
       });
       return;
     }
+
+        if (!checked) {
+          toast.error("Please accept our terms & conditions!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+          return;
+        }
 
     createUser(email, password)
       .then((result) => {
@@ -276,7 +277,7 @@ const Register = () => {
           </p>
 
           <button className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07]">
-            Login
+           Register
           </button>
           <p className="flex justify-center items-center">
             <span className="border-b-2 w-full border-gray-200"></span>

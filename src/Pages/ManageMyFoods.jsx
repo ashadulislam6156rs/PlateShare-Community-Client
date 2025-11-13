@@ -82,6 +82,7 @@ const ManageMyFoods = () => {
                 <tr>
                   <th>SL. No.</th>
                   <th>My Foods</th>
+                  <th>View Food Details</th>
                   <th>Status</th>
                   <th>Actions</th>
                 </tr>
@@ -105,6 +106,14 @@ const ManageMyFoods = () => {
                           </div>
                         </div>
                       </div>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/food/foodDetails/${food._id}`}
+                        className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs"
+                      >
+                        View Details
+                      </Link>
                     </td>
                     <td>
                       <div className="badge bg-[#00d2908c]">{food.status}</div>

@@ -1,6 +1,8 @@
 # 🍽️ PlateShare
 
-**Live Site:** [demo](https://plateshare.web.app)
+**Live Site View for Netlify:** [View Live](https://plateshare-community.netlify.app/)
+
+**Live Site View for Cloudflare:** [View Live](https://plateshare-community.pages.dev/)
 
 PlateShare is a community-powered food sharing platform that connects generous donors with individuals and families in need. Built with empathy, trust, and accessibility at its core, PlateShare helps reduce food waste while strengthening local bonds.
 
@@ -32,13 +34,14 @@ PlateShare is a community-powered food sharing platform that connects generous d
 | Category       | Tools / Libraries          |
 | -------------- | -------------------------- |
 | Frontend       | React, React Router DOM    |
+| Backend        | Express.js,Cors,Node.js, dotenv,MongoDB,Vercel    |
 | Styling        | Tailwind CSS, DaisyUI      |
 | Authentication | Firebase                   |
 | Animations     | React AOS and React Simple typeWriter |
 | Icons          | React Icons                |
 | Notifications  | React Toastify and sweetalert2            |
-| Deployment     |   |
-| Validation     | PropTypes    
+| Client Site Deployment     | Netlify & Cloudflare  |
+| Server Site Deployment     | Vercel  |
 | Data Fetching  | fetch            |
 | Data Handling  | MongoDB Database            |
 
@@ -113,9 +116,18 @@ client/
 ├── vite.config.js             
 └── README.md                  
 ```
+---
 
+## 📸 Website Screenshots
 
+### 🏠 Home Page
+![Homepage Screenshot](public/websiteScreenshot/Home_page.jpeg)
 
+### Food Details Page
+![Course Details Screenshot](public/websiteScreenshot/FoodDetails.png)
+
+### User Profile Image (Dropdown Menu)
+![Login Screenshot](public/websiteScreenshot/DropdownMenu.png)
 
 ---
 

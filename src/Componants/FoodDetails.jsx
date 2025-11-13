@@ -11,13 +11,14 @@ import Loading from "../Loading/Loading";
 
 const FoodDetails = () => {
   const { id } = useParams();
+
   const modalRef = useRef();
   const { user } = useContext(AuthContext);
 
   const [spacificRequestFoods, setSpacificrequestFoods] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [singleFood, setSingleFood] = useState(null);
+   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(
@@ -26,20 +27,10 @@ const FoodDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         setSingleFood(data);
-        setLoading(false);
+        setLoading(false)
       })
-      .catch((err) => {
-        toast.error(`${err.message}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+      .catch(() => {
+         setLoading(false);
         setError(true);
       });
   }, [id]);
@@ -49,7 +40,12 @@ const FoodDetails = () => {
       .then((res) => res.json())
       .then((data) => {
         setSpacificrequestFoods(data);
-      });
+         setLoading(false);
+      })
+      .catch(() => {
+         setLoading(false);
+         setError(true);
+      } );
   }, [id]);
 
   const handleFoodStauschange = (foodId) => {
@@ -67,9 +63,7 @@ const FoodDetails = () => {
       .then(() => {
         setSingleFood({ ...singleFood, status: "Donated" });
 
-        // if (allFoods._id === foodId) {
-        //   allFoods.status = "Donated";
-        // }
+      
       })
       .catch((err) =>
         toast.error(`${err.message}`, {
@@ -177,9 +171,9 @@ const FoodDetails = () => {
 
   if (loading) {
     return <Loading></Loading>;
-  }
+ }
 
-  if (error || !singleFood) {
+  if (error || !singleFood?._id) {
     return <ErrorFoodNotFound></ErrorFoodNotFound>;
   }
 
