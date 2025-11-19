@@ -163,19 +163,20 @@ client/
 ---
 ### 🖥️ How to Run Locally:
 1. Clone the Repository
-   Create file plateshare
+
+Create file plateshare
 ```
 cd plateshare
 ```
 ```
-git clone https://github.com/your-username/plateshare.git
+git clone https://github.com/ashadulislam6156rs/PlateShare-Community-Client.git
 
 ```
 2. Install Dependencies
 ```
 npm i
 ```
-3. Create Firebase Config
+3. Start Development Server
 ```
 npm run dev
 ```
