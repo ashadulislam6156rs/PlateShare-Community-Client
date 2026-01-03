@@ -117,7 +117,38 @@ client/
 └── README.md                  
 ```
 ---
-
+## Dependencies (Client Side)
+```
+"dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "aos": "^2.3.4",
+    "firebase": "^12.5.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-icons": "^5.5.0",
+    "react-router": "^7.9.5",
+    "react-simple-typewriter": "^5.0.1",
+    "react-spinners": "^0.17.0",
+    "react-toastify": "^11.0.5",
+    "sweetalert2": "^11.26.3",
+    "tailwindcss": "^4.1.17"
+  },
+```
+```
+"devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@types/react": "^19.1.16",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react-swc": "^4.1.0",
+    "daisyui": "^5.4.7",
+    "eslint": "^9.36.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.22",
+    "globals": "^16.4.0",
+    "vite": "npm:rolldown-vite@7.1.14"
+  },
+```
+---
 ## 📸 Website Screenshots
 
 ### 🏠 Home Page
@@ -130,5 +161,24 @@ client/
 ![Login Screenshot](public/websiteScreenshot/DropdownMenu.png)
 
 ---
+### 🖥️ How to Run Locally:
+1. Clone the Repository
+
+Create file plateshare
+```
+cd plateshare
+```
+```
+git clone https://github.com/ashadulislam6156rs/PlateShare-Community-Client.git
+
+```
+2. Install Dependencies
+```
+npm i
+```
+3. Start Development Server
+```
+npm run dev
+```
 
 
