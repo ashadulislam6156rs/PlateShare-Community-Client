@@ -45,7 +45,7 @@ const FeatureFoods = () => {
         {/* View All Button */}
         <div className="flex items-center justify-center py-10 pb-5">
           <Link
-            to="/availableFoods"
+            to="/viewAllFoods"
             className="
               my-btn text-white font-semibold
               bg-linear-to-r from-[#012444] via-[#1b2f5b] to-[#fd7e07]

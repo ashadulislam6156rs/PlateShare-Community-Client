@@ -16,6 +16,8 @@ import Error_404 from "../Componants/ErrorPages/Error_404";
 import TermsAndConditions from "../Pages/TermsAndConditions";
 import PrivacyPolicy from "../Pages/PrivacyPolicy";
 import ContactUs from "../Pages/ContactUs";
+import AboutUs from "../Pages/AboutUs";
+import DashboardLayout from "../Layouts/DashboardLayout";
 
 const router = createBrowserRouter([
   {
@@ -43,43 +45,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/food/foodDetails/:id",
-        element: (<FoodDetails />),
-      },
-      {
-        path: "/addFood",
-        element: (
-          <PrivateRoutes>
-            <AddFood></AddFood>
-          </PrivateRoutes>
-        ),
-      },
-      {
-        path: "/manageMyFoods",
-        element: (
-          <PrivateRoutes>
-            <ManageMyFoods></ManageMyFoods>
-          </PrivateRoutes>
-        ),
-      },
-      {
-        path: "/myFoodRequests",
-        element: (
-          <PrivateRoutes>
-            <MyFoodRequests></MyFoodRequests>
-          </PrivateRoutes>
-        ),
-      },
-      {
-        path: "/updateMyFood/:id",
-        loader: ({ params }) =>
-          fetch(
-            `https://plateshare-community-server.vercel.app/update-food/${params.id}`
-          ),
-        element: (
-          <PrivateRoutes>
-            <UpdateMyFood></UpdateMyFood>
-          </PrivateRoutes>
-        ),
+        element: <FoodDetails />,
       },
       {
         path: "/termsAndConditions",
@@ -94,12 +60,48 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
+        path: "/aboutUs",
+        element: <AboutUs />,
+      },
+      {
         path: "/login",
         element: <LogIn />,
       },
       {
         path: "/register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    errorElement: <Error_404></Error_404>,
+    hydrateFallbackElement: <Loading></Loading>,
+    element: (
+      <PrivateRoutes>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoutes>
+    ),
+    children: [
+      {
+        path: "addFood",
+        element: <AddFood></AddFood>,
+      },
+      {
+        path: "manageMyFoods",
+        element: <ManageMyFoods></ManageMyFoods>,
+      },
+      {
+        path: "myFoodRequests",
+        element: <MyFoodRequests></MyFoodRequests>,
+      },
+      {
+        path: "updateMyFood/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://plateshare-community-server.vercel.app/update-food/${params.id}`
+          ),
+        element: <UpdateMyFood></UpdateMyFood>,
       },
     ],
   },

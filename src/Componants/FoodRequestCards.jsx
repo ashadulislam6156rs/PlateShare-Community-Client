@@ -12,7 +12,7 @@ const FoodRequestCards = ({ requestFoods }) => {
   }, [requestFoods]);
 
   return (
-    <div className="px-3 md:px-0">
+    <div className="px-3 md:px-0 bg-white dark:bg-[#012444] rounded-md">
       <h1 className="text-3xl font-bold text-[#fd7d07] py-10 text-center">
         My Request Foods:{" "}
         <span className="bg-linear-to-r text-transparent bg-clip-text from-[#632EE3] to-[#9F62F2]">

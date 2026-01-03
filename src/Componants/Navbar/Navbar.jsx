@@ -7,6 +7,10 @@ import Container from "../Container/Container";
 import { TbBowlSpoon } from "react-icons/tb";
 import { AuthContext } from "../../AuthContext/AuthContext";
 import UserDeshboard from "./UserDeshboard";
+import { FcOnlineSupport } from "react-icons/fc";
+import { MdDashboard, MdOutlineSupportAgent } from "react-icons/md";
+import { BsInfoCircle } from "react-icons/bs";
+import { SlInfo } from "react-icons/sl";
 
 const Navbar = () => {
   
@@ -40,7 +44,7 @@ const Navbar = () => {
                   : "opacity-0 rotate-90 scale-0"
               }`}
             >
-              <FaBars />
+              <FaBars className="dark:text-black" />
             </div>
 
             <div
@@ -50,13 +54,13 @@ const Navbar = () => {
                   : "opacity-100 rotate-0 scale-100"
               }`}
             >
-              <FaXmark />
+              <FaXmark className="dark:text-black" />
             </div>
           </div>
           {/* Small device menu list*/}
           <ul
             id="mobileDeviceActive"
-            className={`bg-[#00000020] z-100 p-3 rounded-md shadow-lg absolute transition-all duration-300 ease-in-out -left-64 top-18 lg:hidden ${
+            className={`bg-[#00000070] dark:bg-[#000000] z-100 p-3 rounded-md shadow-lg absolute transition-all duration-300 ease-in-out -left-64 top-18 lg:hidden ${
               barToggol ? "" : "left-1 block"
             }`}
           >
@@ -75,6 +79,22 @@ const Navbar = () => {
                 className="flex gap-2 items-center w-52 bg-slate-100 hover:bg-[#fd7d07] font-semibold hover:text-[#fff8ec] px-2 p-1 text-teal-600 rounded"
               >
                 <TbBowlSpoon className="text-base" /> Available Foods
+              </NavLink>
+            </li>
+            <li className="mb-2 shadow-md cursor-pointer">
+              <NavLink
+                to={"/aboutUs"}
+                className="flex gap-2 items-center w-52 bg-slate-100 hover:bg-[#fd7d07] font-semibold hover:text-[#fff8ec] px-2 p-1 text-teal-600 rounded"
+              >
+                <SlInfo className="w-4 h-4" /> About
+              </NavLink>
+            </li>
+            <li className="mb-2 shadow-md cursor-pointer">
+              <NavLink
+                to={"/contactUs"}
+                className="flex gap-2 items-center w-52 bg-slate-100 hover:bg-[#fd7d07] font-semibold hover:text-[#fff8ec] px-2 p-1 text-teal-600 rounded"
+              >
+                <MdOutlineSupportAgent className="w-4 h-4" /> Contact
               </NavLink>
             </li>
           </ul>
@@ -104,6 +124,38 @@ const Navbar = () => {
               >
                 <TbBowlSpoon className="w-4 h-4" />
                 <span className="-ml-1 text-sm">Available Foods</span>
+              </NavLink>
+            </li>
+
+            {user && (
+              <li>
+                <Link
+                  to={"/dashboard"}
+                  // onClick={handleClick}
+                  className="hover:text-[#F57C00] bg-transparent"
+                >
+                  <MdDashboard className="w-4 h-4" />
+                  Dashboard
+                </Link>
+              </li>
+            )}
+
+            <li>
+              <NavLink
+                to={"/aboutUs"}
+                className={"text-base px-1 bg-transparent rounded-b-none"}
+              >
+                <SlInfo className="w-4 h-4" />
+                <span className="-ml-1 text-sm">About</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to={"/contactUs"}
+                className={"text-base px-1 bg-transparent rounded-b-none"}
+              >
+                <MdOutlineSupportAgent className="w-4 h-4" />
+                <span className="-ml-1 text-sm">Contact</span>
               </NavLink>
             </li>
           </ul>

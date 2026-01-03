@@ -49,31 +49,18 @@ const AddFood = () => {
       body: JSON.stringify(newFood),
     })
       .then(() => {
-        toast.success(
-          "Congratulations! Your Food has been successfully Added.",
-          {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            transition: Bounce,
-          }
-        );
+        toast.success("Food added successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          theme: "dark",
+          transition: Bounce,
+        });
         e.target.reset();
       })
       .catch((err) =>
-        toast.error(`${err.message}`, {
+        toast.error(err.message, {
           position: "top-right",
           autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
           theme: "dark",
           transition: Bounce,
         })
@@ -82,113 +69,149 @@ const AddFood = () => {
   };
 
   return (
-    <div className="min-h-screen pb-5 md:p-10 bg-gray-900 text-gray-100">
+    <div
+      className="min-h-screen pb-5 md:p-10 
+       text-gray-900 
+      dark:bg-gray-900 dark:text-gray-100"
+    >
       <title>Add Food - PlateShare Community</title>
+
       <Container>
-        <div className="md:w-5/6 p-3 md:p-0 mx-auto w-full">
-          <div className="card card-side bg-gray-800 mt-4 shadow-lg rounded-lg md:p-6 w-full">
+        <div className="md:w-5/6 mx-auto w-full px-3 md:px-0">
+          <div
+            className="card bg-white dark:bg-gray-800 
+            mt-4 shadow-lg rounded-lg md:p-6 w-full"
+          >
             <div className="md:p-5 pt-5">
-              <h1 className="md:text-4xl text-2xl text-[#fd7d07] font-semibold pb-3 text-center">
+              <h1
+                className="md:text-4xl text-2xl 
+                text-[#fd7d07] font-semibold pb-3 text-center"
+              >
                 Add New Food
               </h1>
-              <p className="text-gray-400 font-semibold text-sm text-center">
-                Share your extra or leftover food with the community by adding
-                all the necessary details here. Include the food name, quantity,
-                pickup location, time window, and any special notes so that
-                people who need it can easily request and collect it. Your small
+
+              <p
+                className="text-gray-600 dark:text-gray-400 
+                font-semibold text-sm text-center"
+              >
+                Share your extra or leftover food with the community. Your small
                 contribution can help reduce waste and support someone in need.
               </p>
 
               <form onSubmit={handleAddFood} className="mt-7 space-y-4">
-                <div className="flex gap-5 items-center">
-                  <fieldset className="fieldset w-full">
-                    <legend className="fieldset-legend text-gray-300">
-                      Food Name <span className="text-red-400">*</span>
+                {/* Food Name & Quantity */}
+                <div className="flex gap-5">
+                  <fieldset className="w-full">
+                    <legend className="text-gray-700 dark:text-gray-300">
+                      Food Name *
                     </legend>
                     <input
                       type="text"
-                      className="input w-full bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring focus:ring-yellow-500"
                       name="foodName"
-                      placeholder="e. g. Mango Lassi"
                       required
+                      placeholder="e.g. Mango Lassi"
+                      className="input w-full 
+                        bg-white text-gray-900 border-gray-300 
+                        dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600
+                        focus:ring focus:ring-yellow-500"
                     />
                   </fieldset>
 
-                  <fieldset className="fieldset w-full">
-                    <legend className="fieldset-legend text-gray-300">
-                      Food Quantity <span className="text-red-400">*</span>
+                  <fieldset className="w-full">
+                    <legend className="text-gray-700 dark:text-gray-300">
+                      Quantity *
                     </legend>
                     <input
                       type="text"
                       name="quantity"
-                      placeholder="e.g. Serves 2 people"
                       required
-                      className="input w-full bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring focus:ring-yellow-500"
+                      placeholder="Serves 2 people"
+                      className="input w-full 
+                        bg-white text-gray-900 border-gray-300 
+                        dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600
+                        focus:ring focus:ring-yellow-500"
                     />
                   </fieldset>
                 </div>
 
+                {/* Location & Expire Date */}
                 <div className="flex gap-5">
-                  <fieldset className="fieldset w-full">
-                    <legend className="fieldset-legend text-gray-300">
-                      Pickup Location <span className="text-red-400">*</span>
+                  <fieldset className="w-full">
+                    <legend className="text-gray-700 dark:text-gray-300">
+                      Pickup Location *
                     </legend>
                     <input
                       type="text"
                       name="pickupLocation"
-                      placeholder="e.g. Rampura, Dhaka"
                       required
-                      className="input w-full bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring focus:ring-yellow-500"
+                      placeholder="Rampura, Dhaka"
+                      className="input w-full 
+                        bg-white text-gray-900 border-gray-300 
+                        dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600
+                        focus:ring focus:ring-yellow-500"
                     />
                   </fieldset>
 
-                  <fieldset className="fieldset w-full">
-                    <legend className="fieldset-legend text-gray-300">
-                      Expire Date <span className="text-red-400">*</span>
+                  <fieldset className="w-full">
+                    <legend className="text-gray-700 dark:text-gray-300">
+                      Expire Date *
                     </legend>
                     <input
                       type="date"
                       name="expireDate"
                       required
-                      className="input w-full bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring focus:ring-yellow-500"
+                      min={new Date().toISOString().split("T")[0]}
+                      className="input w-full 
+                        bg-white text-gray-900 border-gray-300 
+                        dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600
+                        focus:ring focus:ring-yellow-500"
                     />
                   </fieldset>
                 </div>
 
-                <fieldset className="fieldset w-full">
-                  <legend className="fieldset-legend text-gray-300">
-                    Food Image <span className="text-red-400">*</span>
+                {/* Image */}
+                <fieldset>
+                  <legend className="text-gray-700 dark:text-gray-300">
+                    Food Image *
                   </legend>
                   <input
                     type="url"
                     name="foodImage"
-                    placeholder="Enter Food Image URL"
                     required
-                    className="input w-full bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring focus:ring-yellow-500"
+                    placeholder="Image URL"
+                    className="input w-full 
+                      bg-white text-gray-900 border-gray-300 
+                      dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600
+                      focus:ring focus:ring-yellow-500"
                   />
                 </fieldset>
 
-                <fieldset className="fieldset w-full">
-                  <legend className="fieldset-legend text-gray-300">
-                    Additional Notes <span className="text-red-400">*</span>
+                {/* Description */}
+                <fieldset>
+                  <legend className="text-gray-700 dark:text-gray-300">
+                    Additional Notes *
                   </legend>
                   <textarea
                     name="description"
-                    placeholder="Enter Food Details"
                     required
-                    className="textarea w-full bg-gray-700 text-gray-100 border-gray-600 focus:outline-none focus:ring focus:ring-yellow-500 resize-none"
+                    placeholder="Food details..."
+                    className="textarea w-full resize-none
+                      bg-white text-gray-900 border-gray-300 
+                      dark:bg-gray-700 dark:text-gray-100 dark:border-gray-600
+                      focus:ring focus:ring-yellow-500"
                   ></textarea>
                 </fieldset>
 
-                <div className="flex justify-center items-center w-full mt-5">
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="bg-linear-to-r w-full text-white rounded-lg hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07] py-1.5 md:py-2 font-semibold"
-                  >
-                    {loading ? "Adding..." : "Add New Food"}
-                  </button>
-                </div>
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full mt-4 py-2 rounded-lg font-semibold text-white
+                    bg-linear-to-r from-[#012444] via-[#1b2f5b] to-[#fd7e07]
+                    hover:bg-linear-to-l"
+                >
+                  {loading ? "Adding..." : "Add New Food"}
+                </button>
               </form>
             </div>
           </div>

@@ -11,7 +11,7 @@ const MainLayout = () => {
   return (
     <div className="bg-[#f7f7f7] dark:bg-[#0f172a] transition-colors duration-300">
       {/* Header */}
-      <header className="max-w-full mx-auto sticky top-0 z-50">
+      <header className="max-w-full mx-auto sticky top-0 z-150">
         <nav className="bg-[#012444] dark:bg-black shadow-sm dark:shadow-none">
           <Navbar />
         </nav>

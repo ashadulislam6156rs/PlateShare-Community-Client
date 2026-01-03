@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthContext";
-import { NavLink } from "react-router";
 import { Bounce, toast } from "react-toastify";
 
 const UserDeshboard = () => {
@@ -17,7 +16,7 @@ const UserDeshboard = () => {
           closeOnClick: false,
           pauseOnHover: true,
           draggable: true,
-          theme: "dark", // dark mode toast
+          theme: "dark", 
           transition: Bounce,
         });
       })
@@ -60,50 +59,7 @@ const UserDeshboard = () => {
                    bg-white dark:bg-slate-800 rounded-box z-50 w-52 p-2
                    shadow-md dark:shadow-[#fd7d0750] transition-colors duration-300"
       >
-        {/* Add Food */}
-        <li className="mb-2 shadow-md cursor-pointer">
-          <NavLink
-            to={"/addFood"}
-            className="flex gap-2 items-center px-2 py-1
-                       bg-slate-100 dark:bg-slate-700
-                       text-teal-600 dark:text-white
-                       font-semibold rounded
-                       hover:bg-[#fd7d07] hover:text-white
-                       transition-colors duration-300"
-          >
-            Add Food
-          </NavLink>
-        </li>
-
-        {/* Manage My Foods */}
-        <li className="mb-2 shadow-md cursor-pointer">
-          <NavLink
-            to={"/manageMyFoods"}
-            className="flex gap-2 items-center px-2 py-1
-                       bg-slate-100 dark:bg-slate-700
-                       text-teal-600 dark:text-white
-                       font-semibold rounded
-                       hover:bg-[#fd7d07] hover:text-white
-                       transition-colors duration-300"
-          >
-            Manage My Foods
-          </NavLink>
-        </li>
-
-        {/* My Food Requests */}
-        <li className="mb-2 shadow-md cursor-pointer">
-          <NavLink
-            to={"/myFoodRequests"}
-            className="flex gap-2 items-center px-2 py-1
-                       bg-slate-100 dark:bg-slate-700
-                       text-teal-600 dark:text-white
-                       font-semibold rounded
-                       hover:bg-[#fd7d07] hover:text-white
-                       transition-colors duration-300"
-          >
-            My Food Requests
-          </NavLink>
-        </li>
+       
 
         {/* Logout Button */}
         <li>

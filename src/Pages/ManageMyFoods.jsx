@@ -122,7 +122,7 @@ const ManageMyFoods = () => {
                     </td>
                     <th className="flex gap-2 items-center md:mt-4">
                       <Link
-                        to={`/updateMyFood/${food._id}`}
+                        to={`/dashboard/updateMyFood/${food._id}`}
                         className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs dark:text-green-400 dark:border-green-500 dark:hover:bg-green-500 dark:hover:text-white"
                       >
                         Update
