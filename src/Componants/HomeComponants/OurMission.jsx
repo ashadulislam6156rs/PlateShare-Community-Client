@@ -6,8 +6,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 
 const OurMission = () => {
-
- useEffect(() => {
+  useEffect(() => {
     Aos.init({
       duration: 900,
       once: false,
@@ -16,49 +15,51 @@ const OurMission = () => {
   }, []);
 
   return (
-    <div className="py-10">
-      <Container className={`px-3`}>
+    <div className="py-10 bg-white dark:bg-[#0f172a] transition-colors duration-300">
+      <Container className="px-3">
         <h1 className="text-3xl font-bold text-[#fd7d07] text-center">
           Our Mission
         </h1>
+
         <div className="md:w-1/2 w-full mx-auto">
-          <p className="text-center py-2 pt-3 text-base text-gray-500">
+          <p className="text-center py-2 pt-3 text-base text-gray-500 dark:text-gray-300">
             Every plate shared brings hope. Join our community to reduce food
             waste and help those in need.
           </p>
         </div>
-      
+
         <div
-          className="mt-7 grid md:grid-cols-2 gap-7 lg:grid-cols-3"
+          className="mt-7 grid md:grid-cols-2 lg:grid-cols-3 gap-7"
           data-aos="fade-up"
           data-aos-offset="120"
           data-aos-delay="70"
           data-aos-duration="900"
         >
-        
-          <div className="bg-white bg-opacity-10 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 transition">
-            <div className="mb-4">
-              <FaSmile className="text-4xl text-[#fd7d07]" />
-            </div>
-            <h3 className="text-2xl font-bold">1,250+</h3>
-            <p className="text-gray-700">Meals Shared</p>
+          {/* Card 1 */}
+          <div className="bg-white bg-opacity-10 dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 dark:hover:bg-slate-700 transition">
+            <FaSmile className="text-4xl text-[#fd7d07] mb-4" />
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              1,250+
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300">Meals Shared</p>
           </div>
 
-         
-          <div className="bg-white bg-opacity-10 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 transition">
-            <div className="mb-4">
-              <FaUtensils className="text-4xl text-[#fd7d07]" />
-            </div>
-            <h3 className="text-2xl font-bold">5,400 kg</h3>
-            <p className="text-gray-700">Food Donated</p>
+          {/* Card 2 */}
+          <div className="bg-white bg-opacity-10 dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 dark:hover:bg-slate-700 transition">
+            <FaUtensils className="text-4xl text-[#fd7d07] mb-4" />
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              5,400 kg
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300">Food Donated</p>
           </div>
-         
-          <div className="bg-white bg-opacity-10 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 transition">
-            <div className="mb-4">
-              <FaUsers className="text-4xl text-[#fd7d07]" />
-            </div>
-            <h3 className="text-2xl font-bold">320+</h3>
-            <p className="text-gray-700">Volunteers</p>
+
+          {/* Card 3 */}
+          <div className="bg-white bg-opacity-10 dark:bg-slate-800 dark:bg-opacity-70 rounded-xl p-6 flex flex-col items-center hover:bg-opacity-20 dark:hover:bg-slate-700 transition">
+            <FaUsers className="text-4xl text-[#fd7d07] mb-4" />
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              320+
+            </h3>
+            <p className="text-gray-700 dark:text-gray-300">Volunteers</p>
           </div>
         </div>
       </Container>

@@ -58,16 +58,15 @@ const ManageMyFoods = () => {
   };
 
   if (loading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
 
   return (
-    <div>
+    <div className="bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-200">
       <title>Manage My Foods - PlateShare Community</title>
-      <Container className={`px-3`}>
+      <Container className="px-3">
         <div>
-          <h1 className="text-3xl font-bold text-[#fd7d07] text-center py-5 md:py-10">
-            {" "}
+          <h1 className="text-3xl font-bold text-orange-500 dark:text-orange-400 text-center py-5 md:py-10">
             Manage My Foods:{" "}
             <span className="from-[#632EE3] to-[#9F62F2] bg-linear-to-r text-transparent bg-clip-text">
               {myFoods.length}
@@ -76,9 +75,8 @@ const ManageMyFoods = () => {
 
           {/* table */}
           <div className="overflow-x-auto pr-5 mb-5">
-            <table className="table table-zebra">
-              {/* head */}
-              <thead>
+            <table className="table table-zebra dark:table-auto dark:bg-gray-800 dark:text-gray-200">
+              <thead className="bg-gray-200 dark:bg-gray-700 dark:text-gray-200">
                 <tr>
                   <th>SL. No.</th>
                   <th>My Foods</th>
@@ -88,15 +86,17 @@ const ManageMyFoods = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* row 1 */}
                 {myFoods?.map((food, index) => (
-                  <tr>
+                  <tr
+                    key={food._id}
+                    className="dark:border-b dark:border-gray-600"
+                  >
                     <th>{index + 1}</th>
                     <td>
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div className="mask rounded-lg h-12 w-20">
-                            <img src={food.foodImage} alt="Avatar" />
+                            <img src={food.foodImage} alt={food.foodName} />
                           </div>
                         </div>
                         <div>
@@ -110,24 +110,26 @@ const ManageMyFoods = () => {
                     <td>
                       <Link
                         to={`/food/foodDetails/${food._id}`}
-                        className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs"
+                        className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs dark:text-green-400 dark:border-green-500 dark:hover:bg-green-500 dark:hover:text-white"
                       >
                         View Details
                       </Link>
                     </td>
                     <td>
-                      <div className="badge bg-[#00d2908c]">{food.status}</div>
+                      <div className="badge bg-[#00d2908c] dark:bg-green-600">
+                        {food.status}
+                      </div>
                     </td>
                     <th className="flex gap-2 items-center md:mt-4">
                       <Link
                         to={`/updateMyFood/${food._id}`}
-                        className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs"
+                        className="btn-success text-success hover:text-white md:px-4 px-3.5 btn btn-outline btn-ghost btn-xs dark:text-green-400 dark:border-green-500 dark:hover:bg-green-500 dark:hover:text-white"
                       >
                         Update
                       </Link>
                       <button
                         onClick={() => handleMyFoodsDelete(food._id)}
-                        className="btn btn-outline px-4 text-error hover:text-white btn-error btn-ghost btn-xs"
+                        className="btn btn-outline px-4 text-error hover:text-white btn-error btn-ghost btn-xs dark:text-red-400 dark:border-red-500 dark:hover:bg-red-500 dark:hover:text-white"
                       >
                         Delete
                       </button>
@@ -135,7 +137,6 @@ const ManageMyFoods = () => {
                   </tr>
                 ))}
               </tbody>
-              {/* foot */}
             </table>
           </div>
         </div>

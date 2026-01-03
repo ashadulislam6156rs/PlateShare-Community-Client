@@ -80,18 +80,19 @@ const LogIn = () => {
   };
 
   return (
-    <Container
-      className={`flex justify-center items-center py-15 md:px-0 px-3`}
-    >
+    <Container className="flex justify-center items-center py-15 md:px-0 px-3 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-200">
       <title>LogIn - PlateShare Community</title>
       <form
         onSubmit={handleUserLogInWithPassword}
-        className="shadow-lg bg-base-200 rounded-box w-full md:w-3/6 lg:w-2/6 border p-7 border-[#012444]"
+        className="shadow-lg bg-base-200 dark:bg-gray-800 rounded-box w-full md:w-3/6 lg:w-2/6 border p-7 border-[#012444] dark:border-gray-600"
       >
         <h1 className="text-2xl font-bold text-center py-2">Login</h1>
-        <p className="text-sm font-normal text-center pb-4">
+        <p className="text-sm font-normal text-center pb-4 dark:text-gray-300">
           Don't have an account? Please{" "}
-          <Link to={"/register"} className="hover:underline text-[#fd7d07]">
+          <Link
+            to={"/register"}
+            className="hover:underline text-[#fd7d07] dark:text-orange-400"
+          >
             <span className="cursor-pointer font-semibold">Register Now</span>
           </Link>
         </p>
@@ -107,14 +108,14 @@ const LogIn = () => {
                 required
                 name="email"
                 placeholder="e.g. plateshare@gmail.com"
-                className="input input-md w-full outline-0 focus:border-[#012444]"
+                className="input input-md w-full outline-0 focus:border-[#012444] bg-white dark:bg-gray-700 dark:text-gray-200"
               />
             </label>
           </fieldset>
 
           <fieldset>
             <h4 className="text-base font-semibold mb-2">Password</h4>
-            <label className="floating-label bg-amber-300 w-full relative">
+            <label className="floating-label w-full relative bg-amber-300 dark:bg-gray-700">
               <span className="bg-[#012444] p-1 rounded-md text-white">
                 Enter Password
               </span>
@@ -123,22 +124,21 @@ const LogIn = () => {
                 placeholder="Enter Password..."
                 required
                 name="password"
-                className="input input-md w-full outline-0 focus:border-[#012444]"
+                className="input input-md w-full outline-0 focus:border-[#012444] bg-white dark:bg-gray-700 dark:text-gray-200"
               />
               <button
                 type="button"
                 onClick={() => setShowEye(!showEye)}
-                className="absolute right-3 top-3 text-base z-50 cursor-pointer"
+                className="absolute right-3 top-3 text-base z-50 cursor-pointer text-gray-700 dark:text-gray-200"
               >
                 {showEye ? <FaRegEye /> : <FaRegEyeSlash />}
               </button>
-              {/* <FaRegEye className="absolute right-3 top-3 text-base z-50" />
-              <FaRegEyeSlash classNameclassName="absolute right-3 top-3 text-base z-50" /> */}
             </label>
           </fieldset>
+
           <p>
-            <span className="hover:underline text-[#fd7d07]">
-              <span className="cursor-pointer  font-semibold">
+            <span className="hover:underline text-[#fd7d07] dark:text-orange-400">
+              <span className="cursor-pointer font-semibold">
                 Forgot Password?
               </span>
             </span>
@@ -147,11 +147,13 @@ const LogIn = () => {
           <button className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07]">
             Login
           </button>
+
           <p className="flex justify-center items-center">
-            <span className="border-b-2 w-full border-gray-200"></span>
+            <span className="border-b-2 w-full border-gray-200 dark:border-gray-600"></span>
             <span className="px-3 font-semibold">OR</span>
-            <span className="border-b-2 w-full border-gray-200"></span>
+            <span className="border-b-2 w-full border-gray-200 dark:border-gray-600"></span>
           </p>
+
           {/* Google Btn */}
           <Link
             onClick={handleGoogleLogIn}

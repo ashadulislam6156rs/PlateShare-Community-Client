@@ -6,25 +6,28 @@ import Loading from "../Loading/Loading";
 import { Bounce, ToastContainer } from "react-toastify";
 
 const MainLayout = () => {
-  const navigatation = useNavigation();
+  const navigation = useNavigation();
 
   return (
-    <div>
-      <header className="max-w-full mx-auto">
-        <nav className="bg-[#012444] shadow-sm">
-          <Navbar></Navbar>
+    <div className="bg-[#f7f7f7] dark:bg-[#0f172a] transition-colors duration-300">
+      {/* Header */}
+      <header className="max-w-full mx-auto sticky top-0 z-50">
+        <nav className="bg-[#012444] dark:bg-black shadow-sm dark:shadow-none">
+          <Navbar />
         </nav>
       </header>
-      <main className="max-w-full mx-auto min-h-[calc(100vh-350.5px)] bg-[#f7f7f7]">
-        {navigatation?.state == "loading" ? (
-          <Loading></Loading>
-        ) : (
-          <Outlet></Outlet>
-        )}
+
+      {/* Main Content */}
+      <main className="max-w-full mx-auto min-h-[calc(100vh-350.5px)] bg-[#f7f7f7] dark:bg-[#0f172a] transition-colors duration-300">
+        {navigation?.state === "loading" ? <Loading /> : <Outlet />}
       </main>
-      <footer className="bg-[#012444] max-w-full mx-auto">
-        <Footer></Footer>
+
+      {/* Footer */}
+      <footer className="bg-[#012444] dark:bg-black max-w-full mx-auto">
+        <Footer />
       </footer>
+
+      {/* Toast */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -35,7 +38,7 @@ const MainLayout = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
         transition={Bounce}
       />
     </div>

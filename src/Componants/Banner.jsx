@@ -37,7 +37,7 @@ const Banner = () => {
               <div className="flex items-center justify-center">
                 <Link
                   to={"/viewAllFoods"}
-                  className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l from-[#012444] via-[#1b2f5b] to-[#fd7e07]"
+                  className="my-btn bg-linear-to-r text-white hover:bg-linear-to-l dark:via-[#fd7e07] dark:hover:bg-linear-to-l dark:from-[#fd7e07] dark:to-[#fd7e07] from-[#012444] dark:hover:from-[#012444] via-[#1b2f5b] to-[#fd7e07]"
                 >
                   View All Foods
                 </Link>

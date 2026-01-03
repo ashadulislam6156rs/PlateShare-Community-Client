@@ -4,7 +4,7 @@ import FoodCard from "../Componants/HomeComponants/FoodCard";
 import Loading from "../Loading/Loading";
 
 const ViewAllFoods = () => {
-  const [allFoods, setAllFoods] = useState();
+  const [allFoods, setAllFoods] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -17,20 +17,22 @@ const ViewAllFoods = () => {
   }, []);
 
   if (loading) {
-    return <Loading></Loading>;
+    return <Loading />;
   }
+
   return (
-    <div className="py-10">
+    <div className="py-10 bg-gray-50 dark:bg-gray-900 min-h-screen text-gray-800 dark:text-gray-200">
       <title>View All Foods - PlateShare Community</title>
-      <Container className={`px-3`}>
-        <h1 className="text-3xl font-bold text-[#fd7d07] text-center">
+      <Container className="px-3">
+        <h1 className="text-3xl font-bold text-[#fd7d07] dark:text-orange-400 text-center">
           All Foods
         </h1>
         <div className="md:w-1/2 mx-auto">
-          <p className="text-center py-2 pt-3 text-base text-gray-500">
-            "Explore our full collection of fresh, delicious foods-each prepared
-            with care and shared to bring joy to your meals while helping reduce
-            daily food waste. Find the perfect dish waiting just for you.
+          <p className="text-center py-2 pt-3 text-base text-gray-500 dark:text-gray-400">
+            Explore our full collection of fresh, delicious foods — each
+            prepared with care and shared to bring joy to your meals while
+            helping reduce daily food waste. Find the perfect dish waiting just
+            for you.
           </p>
         </div>
         {/* Foods Card */}
