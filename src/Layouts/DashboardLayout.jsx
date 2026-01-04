@@ -5,11 +5,14 @@ import { ToastContainer } from "react-toastify";
 import Loading from "../Loading/Loading";
 import { MdFastfood, MdOutlineFastfood } from "react-icons/md";
 import { PiFootballHelmetLight } from "react-icons/pi";
+import useRole from "../Componants/Hooks/useRole";
+import { FaUsers } from "react-icons/fa6";
 
 
 const DashboardLayout = () => {
  
   const navigatation = useNavigation();
+  const { role } = useRole();
 
   return (
     <div className="max-w-7xl mx-auto">
@@ -61,7 +64,7 @@ const DashboardLayout = () => {
           ></label>
           <div className="flex min-h-full flex-col items-start bg-white md:bg-[#29b5f642] is-drawer-close:w-14 is-drawer-open:w-64">
             {/* Sidebar content here *************************** */}
-            <ul className="menu w-full grow font-semibold text-[#0D47A1]">
+            <ul className="menu w-full bg-[#00b9da4a] grow font-semibold text-[#0D47A1]">
               {/* List item */}
               <li>
                 <NavLink
@@ -97,55 +100,81 @@ const DashboardLayout = () => {
               </li>
 
               {/* User Route ***************** */}
-              <li>
-                <NavLink
-                  to={"/dashboard/addFood"}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#F57C00]"
-                      : "is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  }
-                  data-tip="Add Food"
-                >
-                  <IoFastFoodOutline className="my-1.5 inline-block size-4" />
-                  <span className="is-drawer-close:hidden">Add Food</span>
-                </NavLink>
-              </li>
-              {/* Manage My Foods */}
-              <li>
-                <NavLink
-                  to={"/dashboard/manageMyFoods"}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#F57C00]"
-                      : "is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  }
-                  data-tip="Manage My Foods"
-                >
-                  <MdOutlineFastfood className="my-1.5 inline-block size-4" />
-                  <span className="is-drawer-close:hidden">
-                    Manage My Foods
-                  </span>
-                </NavLink>
-              </li>
-              {/* My Food Requests */}
-              <li>
-                <NavLink
-                  to={"/dashboard/myFoodRequests"}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-[#F57C00]"
-                      : "is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                  }
-                  data-tip="My Food Requests"
-                >
-                  <PiFootballHelmetLight className="my-1.5 inline-block size-4" />
-                  <span className="is-drawer-close:hidden">
-                    My Food Requests
-                  </span>
-                </NavLink>
-              </li>
+              {role === "User" && (
+                <>
+                  <li>
+                    <NavLink
+                      to={"/dashboard/addFood"}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-[#F57C00]"
+                          : "is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      }
+                      data-tip="Add Food"
+                    >
+                      <IoFastFoodOutline className="my-1.5 inline-block size-4" />
+                      <span className="is-drawer-close:hidden">Add Food</span>
+                    </NavLink>
+                  </li>
+                  {/* Manage My Foods */}
+                  <li>
+                    <NavLink
+                      to={"/dashboard/manageMyFoods"}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-[#F57C00]"
+                          : "is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      }
+                      data-tip="Manage My Foods"
+                    >
+                      <MdOutlineFastfood className="my-1.5 inline-block size-4" />
+                      <span className="is-drawer-close:hidden">
+                        Manage My Foods
+                      </span>
+                    </NavLink>
+                  </li>
+                  {/* My Food Requests */}
+                  <li>
+                    <NavLink
+                      to={"/dashboard/myFoodRequests"}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-[#F57C00]"
+                          : "is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      }
+                      data-tip="My Food Requests"
+                    >
+                      <PiFootballHelmetLight className="my-1.5 inline-block size-4" />
+                      <span className="is-drawer-close:hidden">
+                        My Food Requests
+                      </span>
+                    </NavLink>
+                  </li>
+                </>
+              )}
+
               {/* Admin Route *************** */}
+              {role === "Admin" && (
+                <>
+                  {/* Users Management */}
+                  <li>
+                    <NavLink
+                      to={"/dashboard/usersManagement"}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-[#F57C00]"
+                          : "is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                      }
+                      data-tip="Users Management"
+                    >
+                      <FaUsers className="my-1.5 inline-block size-4" />
+                      <span className="is-drawer-close:hidden">
+                        Users Management
+                      </span>
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthContext";
 import { Bounce, toast } from "react-toastify";
+import useRole from "../Hooks/useRole";
+import { IoMdLogOut } from "react-icons/io";
 
 const UserDeshboard = () => {
   const { user, userSignOut, setUser } = useContext(AuthContext);
+    const { role } = useRole();
 
   const handleUserLogOut = () => {
     userSignOut()
@@ -35,7 +38,7 @@ const UserDeshboard = () => {
   };
 
   return (
-    <div className="dropdown dropdown-end">
+    <div className="dropdown dropdown-end ">
       {/* Avatar Button */}
       <div
         tabIndex={0}
@@ -56,13 +59,19 @@ const UserDeshboard = () => {
         tabIndex="-1"
         id="userNavbar"
         className="menu menu-sm mt-5 dropdown-content
-                   bg-white dark:bg-slate-800 rounded-box z-50 w-52 p-2
+                   bg-white dark:bg-slate-800 rounded-md z-50 w-52 p-0
                    shadow-md dark:shadow-[#fd7d0750] transition-colors duration-300"
       >
-       
+        {/* User Info */}
+        <div className="mb-3 rounded-t-md bg-gradient-to-r from-[#012444] to-[#012444] px-3 py-2 text-white">
+          <h1 className="text-sm font-semibold truncate">
+            {user?.displayName || "Anonymous User"}
+          </h1>
+          <p className="text-xs opacity-90">{role}</p>
+        </div>
 
         {/* Logout Button */}
-        <li>
+        <li className="px-2 pb-2">
           <button
             className="w-full py-1.5 font-semibold
                        bg-linear-to-r from-[#012444] via-[#1b2f5b] to-[#fd7e07]
@@ -70,6 +79,7 @@ const UserDeshboard = () => {
                        hover:bg-linear-to-l text-white rounded transition-colors duration-300"
             onClick={handleUserLogOut}
           >
+            <IoMdLogOut className="inline text-lg" />
             Logout
           </button>
         </li>

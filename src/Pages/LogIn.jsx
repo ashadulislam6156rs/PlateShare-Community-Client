@@ -5,6 +5,7 @@ import { AuthContext } from "../AuthContext/AuthContext";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import Container from "../Componants/Container/Container";
 import { Bounce, toast } from "react-toastify";
+import axios from "axios";
 
 const LogIn = () => {
   const { logInGoogle, userLogInWithPassword } = useContext(AuthContext);
@@ -50,7 +51,17 @@ const LogIn = () => {
 
   const handleGoogleLogIn = () => {
     logInGoogle()
-      .then(() => {
+      .then((res) => {
+        // ** User Info  Store the database
+        const userData = {
+          fullName: res.user.displayName,
+          photoURL: res.user.photoURL,
+          email: res.user.email,
+        };
+        axios.post(
+          "https://plateshare-community-server.vercel.app/users",
+          userData
+        );
         toast.success("Congratulations! Your account successfully LogIn.", {
           position: "top-right",
           autoClose: 5000,

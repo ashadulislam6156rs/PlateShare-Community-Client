@@ -18,6 +18,8 @@ import PrivacyPolicy from "../Pages/PrivacyPolicy";
 import ContactUs from "../Pages/ContactUs";
 import AboutUs from "../Pages/AboutUs";
 import DashboardLayout from "../Layouts/DashboardLayout";
+import UsersManagement from "../Pages/Admin/UsersManagement";
+import MyProfile from "../Pages/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -37,10 +39,6 @@ const router = createBrowserRouter([
       },
       {
         path: "/availableFoods",
-        loader: () =>
-          fetch(
-            "https://plateshare-community-server.vercel.app/available-foods"
-          ),
         element: <AvailableFoods />,
       },
       {
@@ -94,6 +92,14 @@ const router = createBrowserRouter([
       {
         path: "myFoodRequests",
         element: <MyFoodRequests></MyFoodRequests>,
+      },
+      {
+        path: "usersManagement",
+        element: <UsersManagement></UsersManagement>,
+      },
+      {
+        path: "my-profile",
+        element: <MyProfile></MyProfile>,
       },
       {
         path: "updateMyFood/:id",

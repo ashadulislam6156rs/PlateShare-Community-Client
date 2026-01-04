@@ -21,13 +21,12 @@ const FoodCard = ({ food }) => {
     pickupLocation,
     expireDate,
     pickupTimeWindow,
-    provider,
   } = food || {};
 
   return (
     <div>
       <div
-        className="card w-full h-[580px] flex flex-col justify-between
+        className="card w-full h-[480px] flex flex-col justify-between
         bg-base-200 dark:bg-slate-800
         shadow-lg dark:shadow-none
         rounded-lg overflow-hidden
@@ -80,24 +79,12 @@ const FoodCard = ({ food }) => {
               Status: <span className="font-normal">{status}</span>
             </p>
           </div>
-
-          {/* Provider */}
-          <div className="flex gap-3 items-center pt-2">
-            <img
-              className="w-10 h-10 rounded-full border border-gray-300 dark:border-slate-600"
-              src={provider?.provider_image}
-              alt={provider?.name}
-            />
-            <h1 className="font-medium text-gray-800 dark:text-gray-200">
-              {provider?.name}
-            </h1>
-          </div>
         </div>
 
         {/* Button */}
         <Link to={`/food/foodDetails/${_id}`} className="p-4 pt-1">
           <button
-            className="w-full py-2 rounded font-semibold
+            className="w-full cursor-pointer py-2 rounded font-semibold
             text-[#fd7d07] border border-[#012444]
             hover:bg-[#012444] hover:text-white
             dark:border-[#fd7d07]

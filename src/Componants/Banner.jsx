@@ -7,14 +7,14 @@ import { Typewriter } from 'react-simple-typewriter';
 const Banner = () => {
     return (
       <>
-        <Container>
-          <div
-            className="bg-cover h-80 md:h-[480px] relative bg-center bg-no-repeat flex items-center justify-center"
-            style={{ backgroundImage: `url(${bannerImg})` }}
-          >
-            <div className="h-80 md:h-[480px] w-full bg-[#00000070] absolute top-0 left-0 z-10"></div>
+        <div
+          className="bg-cover h-80 md:h-[480px] relative bg-center bg-no-repeat flex items-center justify-center"
+          style={{ backgroundImage: `url(${bannerImg})` }}
+        >
+          <div className="h-80 md:h-[480px] w-full bg-[#00000070] absolute top-0 left-0 z-10"></div>
 
-            <div className="space-y-5 md:w-2/4 mx-auto px-3 md:px-0 z-50">
+          <Container>
+            <div className="space-y-5 relative md:w-2/4 mx-auto px-3 md:px-0 z-30">
               <h1 className="text-3xl font-bold text-[#fd7d07] text-center drop-shadow-[0_2px_4px_rgb(0,0,0,0.6)]">
                 <Typewriter
                   words={["Will you share a fresh meal with someone?"]}
@@ -43,8 +43,8 @@ const Banner = () => {
                 </Link>
               </div>
             </div>
-          </div>
-        </Container>
+          </Container>
+        </div>
       </>
     ); 
         

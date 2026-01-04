@@ -1,21 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaBars, FaXmark } from "react-icons/fa6";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import logo from "../../assets/PlateShare_logo.png";
 import { HiOutlineHome } from "react-icons/hi";
 import Container from "../Container/Container";
 import { TbBowlSpoon } from "react-icons/tb";
 import { AuthContext } from "../../AuthContext/AuthContext";
 import UserDeshboard from "./UserDeshboard";
-import { FcOnlineSupport } from "react-icons/fc";
 import { MdDashboard, MdOutlineSupportAgent } from "react-icons/md";
-import { BsInfoCircle } from "react-icons/bs";
 import { SlInfo } from "react-icons/sl";
+import useRole from "../Hooks/useRole";
+
 
 const Navbar = () => {
   
   const [barToggol, setBarToggol] = useState(true);
   const { user } = useContext(AuthContext)
+  const navigate = useNavigate();
+  const { role  } = useRole();
+
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
   useEffect(() => {
@@ -27,6 +30,16 @@ const Navbar = () => {
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
   };
+
+   const handleClick = () => {
+     if (role === "Admin") {
+       navigate("/dashboard/usersManagement");
+     }
+     if (role === "User") {
+       navigate("/dashboard/manageMyFoods");
+     }
+    
+   };
 
   return (
     <Container className="px-3">
@@ -129,14 +142,13 @@ const Navbar = () => {
 
             {user && (
               <li>
-                <Link
-                  to={"/dashboard"}
-                  // onClick={handleClick}
+                <button
+                  onClick={handleClick}
                   className="hover:text-[#F57C00] bg-transparent"
                 >
                   <MdDashboard className="w-4 h-4" />
                   Dashboard
-                </Link>
+                </button>
               </li>
             )}
 

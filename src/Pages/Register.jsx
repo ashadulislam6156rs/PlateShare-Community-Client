@@ -4,7 +4,8 @@ import { Link, useNavigate, useLocation } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import Container from "../Componants/Container/Container";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
-import { Bounce, toast } from "react-toastify";
+import {  toast } from "react-toastify";
+import axios from "axios";
 
 const Register = () => {
   const { createUser, logInGoogle, updateUserInfo, setUser } =
@@ -60,6 +61,19 @@ const Register = () => {
           }
         );
 
+        //** User Info  Store the database
+        const userData = {
+          fullName: name,
+          photoURL: photoURL,
+          email: email,
+          
+        };
+
+        axios.post(
+          "https://plateshare-community-server.vercel.app/users",
+          userData
+        );
+
         e.target.reset();
         navigate(location?.state || "/");
       })
@@ -68,7 +82,17 @@ const Register = () => {
 
   const handleGoogleLogIn = () => {
     logInGoogle()
-      .then(() => {
+      .then((res) => {
+        // ** User Info  Store the database
+        const userData = {
+          fullName: res.user.displayName,
+          photoURL: res.user.photoURL,
+          email: res.user.email,
+        };
+        axios.post(
+          "https://plateshare-community-server.vercel.app/users",
+          userData
+        );
         toast.success("Congratulations! Your account successfully LogIn.", {
           theme: "light",
         });
